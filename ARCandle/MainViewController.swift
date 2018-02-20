@@ -52,7 +52,6 @@ class MainViewController: UIViewController {
 		updateSettings()
 		resetVirtualObject()
         
-        
         textManager.showMessage("找个可以放东西的平面吧")
         
         sceneView.scene.physicsWorld.contactDelegate = self as? SCNPhysicsContactDelegate
@@ -524,8 +523,8 @@ extension MainViewController {
 		case .notAvailable:
 			textManager.escalateFeedback(for: camera.trackingState, inSeconds: 5.0)
 		case .limited:
+            self.resetVirtualObject()//每次回到limit都reset一下
 			if use3DOFTrackingFallback {
-				// After 10 seconds of limited quality, fall back to 3DOF mode.
 				trackingFallbackTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false, block: { _ in
 					self.use3DOFTracking = true
 					self.trackingFallbackTimer?.invalidate()
@@ -572,19 +571,14 @@ extension MainViewController {
 	}
     
     func configureSession() {
-        if ARWorldTrackingConfiguration.isSupported { // checks if user's device supports the more precise ARWorldTrackingSessionConfiguration
-            // equivalent to `if utsname().hasAtLeastA9()`
-            // Create a session configuration
+        if ARWorldTrackingConfiguration.isSupported {
             let configuration = ARWorldTrackingConfiguration()
             configuration.planeDetection = ARWorldTrackingConfiguration.PlaneDetection.horizontal
             
-            // Run the view's session
             sceneView.session.run(configuration)
         } else {
             let sessionErrorMsg = "该设备不支持ARKit\n\n支持的设备如下\n\niPhone 6s / 6s Plus\n\niPhone 7 / 7 Plus\n\niPhone SE\n\niPhone 8 / 8 Plus\n\niPhone X "
-            
             Mixpanel.mainInstance().track(event: "no-arkit")
-            
             displayErrorMessage(title: "", message: sessionErrorMsg, allowRestart: false)
         }
     }

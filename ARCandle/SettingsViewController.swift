@@ -49,6 +49,16 @@ class SettingsViewController: UITableViewController {
     }
 
     
+    @IBAction func showVersion(_ sender: UIButton) {
+        Mixpanel.mainInstance().track(event: "show-version")
+        
+        let alert = UIAlertController(title: "", message: "当前版本-0.0.2", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func linkIntoPrivacy(_ sender: UIButton) {
         let alert = UIAlertController(title: "", message: "是否允许浏览器打开链接", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
