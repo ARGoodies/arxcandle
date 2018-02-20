@@ -49,31 +49,35 @@ class VirtualObjectSelectionViewController: UIViewController, UITableViewDataSou
 	}
 
 	static let COUNT_OBJECTS = 3
+    
 
 	// MARK: - UITableViewDelegate
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var ps = self.delegate?.getPlaneStatus(self)
+        
         if ps == 0 {
-            let alert = UIAlertController(title: "平面还未找到", message: "平面周围的环境信息不足，请保持环境光线明亮，并左右调整摄像头获取更多周围环境信息", preferredStyle: .alert)
+            let alert = UIAlertController(title: "", message: "平面信息不足", preferredStyle: .alert)
             
             Mixpanel.mainInstance().track(event: "block-load")
 
-            alert.addAction(UIAlertAction(title: NSLocalizedString("强制释放", comment: "sure"), style: .`default`, handler: { _ in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("强制释放", comment: "sure"), style: .`destructive`, handler: { _ in
                 self.delegate?.virtualObjectSelectionViewController(self, object: self.getObject(index: indexPath.row))
                 Mixpanel.mainInstance().track(event: "force-load")
                 self.dismiss(animated: true, completion: nil)
             }))
+            
             alert.addAction(UIAlertAction(title: NSLocalizedString("确认", comment: "default"), style: .`default`, handler: { _ in
                 self.delegate?.warningStatus(self)
                 Mixpanel.mainInstance().track(event: "giveup-load")
-                self.dismiss(animated: false, completion: nil)
             }))
+            
             self.present(alert, animated: true, completion: nil)
         }
         else {
             self.delegate?.virtualObjectSelectionViewController(self, object: self.getObject(index: indexPath.row))
             self.dismiss(animated: true, completion: nil)
         }
+
 	}
 
 	// MARK: - UITableViewDataSource

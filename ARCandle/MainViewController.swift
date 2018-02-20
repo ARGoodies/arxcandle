@@ -431,16 +431,17 @@ class MainViewController: UIViewController {
 			return
 		}
 
-		let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissSettings))
+		let barButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissSettings))
 		settingsViewController.navigationItem.rightBarButtonItem = barButtonItem
-		settingsViewController.title = "更多"
+		settingsViewController.title = ""
 
 
 		let navigationController = UINavigationController(rootViewController: settingsViewController)
 		navigationController.modalPresentationStyle = .pageSheet
 		navigationController.popoverPresentationController?.delegate = self
-		navigationController.preferredContentSize = CGSize(width: sceneView.bounds.size.width - 20,
+		/*navigationController.preferredContentSize = CGSize(width: sceneView.bounds.size.width - 20,
 		                                                   height: sceneView.bounds.size.height - 180)
+         */
 		self.present(navigationController, animated: true, completion: nil)
 
 		navigationController.popoverPresentationController?.sourceView = settingsButton
@@ -521,7 +522,7 @@ extension MainViewController {
 
 		switch camera.trackingState {
 		case .notAvailable:
-			textManager.escalateFeedback(for: camera.trackingState, inSeconds: 5.0)
+            print("not")
 		case .limited:
             self.resetVirtualObject()//每次回到limit都reset一下
 			if use3DOFTrackingFallback {
@@ -530,8 +531,6 @@ extension MainViewController {
 					self.trackingFallbackTimer?.invalidate()
 					self.trackingFallbackTimer = nil
 				})
-			} else {
-				textManager.escalateFeedback(for: camera.trackingState, inSeconds: 10.0)
 			}
 		case .normal:
 			textManager.cancelScheduledMessage(forType: .trackingStateEscalation)
@@ -682,8 +681,8 @@ extension MainViewController: UIPopoverPresentationControllerDelegate {
 
 // MARK: - VirtualObjectSelectionViewControllerDelegate
 extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
-
     
+
     func getPlaneStatus(_: VirtualObjectSelectionViewController) -> Int {
         return planeStatus
     }
@@ -726,7 +725,7 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
 				}
                 
                 var fire = ""
-                if object.title == "小蜡烛" {
+                if object.title == "白蜡烛" {
                     fire = "red-fire"
                 }
                 else if object.title == "红蜡烛" {
@@ -992,6 +991,7 @@ extension MainViewController {
 
 	func resetVirtualObject() {
 		VirtualObjectsManager.shared.resetVirtualObjects()
+        planeStatus = 0
         hideDashBoard()
 
 		addObjectButton.setImage(#imageLiteral(resourceName: "add"), for: [])

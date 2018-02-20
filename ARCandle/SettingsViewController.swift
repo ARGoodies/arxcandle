@@ -49,37 +49,27 @@ class SettingsViewController: UITableViewController {
     }
 
     
-    @IBAction func showVersion(_ sender: UIButton) {
-        Mixpanel.mainInstance().track(event: "show-version")
-        
-        let alert = UIAlertController(title: "", message: "当前版本-0.0.2", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    
     @IBAction func linkIntoPrivacy(_ sender: UIButton) {
-        let alert = UIAlertController(title: "", message: "是否允许浏览器打开链接", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
-        }))
+        let alert = UIAlertController(title: "", message: "是否允许浏览器打开链接", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
             
             Mixpanel.mainInstance().track(event: "privacy")
             
             UIApplication.shared.openURL(URL(string: "https://virtual-west.github.io/arxcandle-share/#privacy")!)
         }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
+        }))
         self.present(alert, animated: true, completion: nil)
     }
     
     
     @IBAction func linkIntoMail(_ sender: UIButton) {
-        let alert = UIAlertController(title: "", message: "是否允许启动邮箱", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
-        }))
+        let alert = UIAlertController(title: "", message: "是否允许启动邮箱", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
             Mixpanel.mainInstance().track(event: "mail")
             UIApplication.shared.openURL(URL(string: "mailto:meloalright@gmail.com")!)
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -106,7 +96,7 @@ class SettingsViewController: UITableViewController {
     
         Mixpanel.mainInstance().track(event: "support-device")
         
-        let alert = UIAlertController(title: "", message: "机型包括\n\niPhone 6s / 6s Plus\n\niPhone 7 / 7 Plus\n\niPhone SE\n\niPhone 8 / 8 Plus\n\niPhone X ", preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: "机型包括\n\niPhone 6s / 6s Plus\n\niPhone 7 / 7 Plus\n\niPhone SE\n\niPhone 8 / 8 Plus\n\niPhone X ", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)
