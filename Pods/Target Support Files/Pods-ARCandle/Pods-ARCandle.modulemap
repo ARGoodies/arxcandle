@@ -1,0 +1,6 @@
+framework module Pods_ARCandle {
+  umbrella header "Pods-ARCandle-umbrella.h"
+
+  export *
+  module * { export * }
+}
