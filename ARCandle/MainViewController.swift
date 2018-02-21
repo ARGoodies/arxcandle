@@ -303,6 +303,7 @@ class MainViewController: UIViewController {
     }
 
     @IBOutlet var buoyancyButton: UIButton!
+    @IBOutlet var buoyancyTouch: UIButton!
     @IBAction func buoyanceHandler(_ sender: Any) {
         
         let spinner = UIActivityIndicatorView()
@@ -326,6 +327,7 @@ class MainViewController: UIViewController {
     }
 
     @IBOutlet var sweepButton: UIButton!
+    @IBOutlet var sweepTouch: UIButton!
     @IBAction func sweepHandler(_ sender: Any) {
         
         let spinner = UIActivityIndicatorView()
@@ -363,6 +365,7 @@ class MainViewController: UIViewController {
     
     
     @IBOutlet var dragonButton: UIButton!
+    @IBOutlet var dragonTouch: UIButton!
     @IBAction func dragonHandler(_ sender: Any) {
         self.toggleColors()
     }
@@ -387,31 +390,37 @@ class MainViewController: UIViewController {
     }
     
     @IBOutlet var dragonBlackButton: UIButton!
+    @IBOutlet var dragonBlackTouch: UIButton!
     @IBAction func dragonBlackHandler(_ sender: Any) {
         loadSpinnerOfDragonButton(colorname: "black")
     }
     
     @IBOutlet var dragonYellowButton: UIButton!
+    @IBOutlet var dragonYellowTouch: UIButton!
     @IBAction func dragonYellowHandler(_ sender: Any) {
         loadSpinnerOfDragonButton(colorname: "yellow")
     }
     
     @IBOutlet var dragonGreenButton: UIButton!
+    @IBOutlet var dragonGreenTouch: UIButton!
     @IBAction func dragonGreenHandler(_ sender: Any) {
         loadSpinnerOfDragonButton(colorname: "green")
     }
     
     @IBOutlet var dragonBlueButton: UIButton!
+    @IBOutlet var dragonBlueTouch: UIButton!
     @IBAction func dragonBlueHandler(_ sender: Any) {
         loadSpinnerOfDragonButton(colorname: "blue")
     }
     
     @IBOutlet var dragonPurpleButton: UIButton!
+    @IBOutlet var dragonPurpleTouch: UIButton!
     @IBAction func dragonPurpleHandler(_ sender: Any) {
         loadSpinnerOfDragonButton(colorname: "purple")
     }
     
     @IBOutlet var dragonRedButton: UIButton!
+    @IBOutlet var dragonRedTouch: UIButton!
     @IBAction func dragonRedHandler(_ sender: Any) {
         loadSpinnerOfDragonButton(colorname: "red")
     }
@@ -544,17 +553,19 @@ extension MainViewController {
 	func session(_ session: ARSession, didFailWithError error: Error) {
 		guard let arError = error as? ARError else { return }
 
-		let nsError = error as NSError
-        
-        let sessionErrorMsg = "请检查是否开启相机权限"
+        Mixpanel.mainInstance().track(event: "camera-crash")
 
-		let isRecoverable = (arError.code == .worldTrackingFailed)
-        
-        Mixpanel.mainInstance().track(event: "ar-crash")
-        
-
-		displayErrorMessage(title: "", message: sessionErrorMsg, allowRestart: isRecoverable)
-	}
+        let alert = UIAlertController(title: "", message: "AR场景需要开启相机权限", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("去开启", comment: "sure"), style: .`destructive`, handler: { _ in
+            
+            let url = NSURL.init(string: UIApplicationOpenSettingsURLString)
+            if (UIApplication.shared.canOpenURL(url! as URL)) {
+                UIApplication.shared.openURL(url! as URL)
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 
 	func sessionWasInterrupted(_ session: ARSession) {
 		textManager.blurBackground()
@@ -947,13 +958,17 @@ extension MainViewController {
         dragonButton.isHidden = false
         buoyancyButton.isHidden = false
         sweepButton.isHidden = false
-        dragonButton.isHidden = false
+        
+        
+        buoyancyTouch.isHidden = false
+        sweepTouch.isHidden = false
+        dragonTouch.isHidden = false
+        
     }
 
     
     func hideDashBoard() {
         isDashBoardShow = false
-        dragonButton.isHidden = true
         buoyancyButton.isHidden = true
         sweepButton.isHidden = true
         dragonButton.isHidden = true
@@ -963,6 +978,17 @@ extension MainViewController {
         dragonBlueButton.isHidden = true
         dragonPurpleButton.isHidden = true
         dragonRedButton.isHidden = true
+    
+        buoyancyTouch.isHidden = true
+        sweepTouch.isHidden = true
+        dragonTouch.isHidden = true
+        
+        dragonBlackTouch.isHidden = true
+        dragonYellowTouch.isHidden = true
+        dragonGreenTouch.isHidden = true
+        dragonBlueTouch.isHidden = true
+        dragonPurpleTouch.isHidden = true
+        dragonRedTouch.isHidden = true
     }
     
     func toggleColors() {
@@ -974,6 +1000,13 @@ extension MainViewController {
             dragonBlueButton.isHidden = true
             dragonPurpleButton.isHidden = true
             dragonRedButton.isHidden = true
+            
+            dragonBlackTouch.isHidden = true
+            dragonYellowTouch.isHidden = true
+            dragonGreenTouch.isHidden = true
+            dragonBlueTouch.isHidden = true
+            dragonPurpleTouch.isHidden = true
+            dragonRedTouch.isHidden = true
             return
         }
         else{
@@ -984,6 +1017,13 @@ extension MainViewController {
             dragonBlueButton.isHidden = false
             dragonPurpleButton.isHidden = false
             dragonRedButton.isHidden = false
+            
+            dragonBlackTouch.isHidden = false
+            dragonYellowTouch.isHidden = false
+            dragonGreenTouch.isHidden = false
+            dragonBlueTouch.isHidden = false
+            dragonPurpleTouch.isHidden = false
+            dragonRedTouch.isHidden = false
         }
     }
     

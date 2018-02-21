@@ -124,11 +124,31 @@
                                     <action selector="buoyanceHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="hzz-ex-NoJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDg-u9-bOx" userLabel="buo-touch">
+                                <rect key="frame" x="0.0" y="517" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="bR2-T6-p8F"/>
+                                    <constraint firstAttribute="height" constant="64" id="fup-L5-had"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="buoyanceHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="GRV-jU-Qjw"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qs6-cE-d5q">
                                 <rect key="frame" x="10" y="603" width="48" height="48"/>
                                 <state key="normal" image="sweep"/>
                                 <connections>
                                     <action selector="sweepHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="1JK-Nq-4Kr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXv-xc-4D6" userLabel="sweep-touch">
+                                <rect key="frame" x="0.0" y="603" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="r5x-JE-we5"/>
+                                    <constraint firstAttribute="width" constant="64" id="yfg-tf-sPe"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sweepHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="G62-41-cQl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6W-wK-bDp" userLabel="dragon-flu">
@@ -178,26 +198,6 @@
                                 <state key="normal" image="yellow-flu"/>
                                 <connections>
                                     <action selector="dragonYellowHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="6rl-NX-lfp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXv-xc-4D6" userLabel="sweep-touch">
-                                <rect key="frame" x="0.0" y="603" width="64" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="r5x-JE-we5"/>
-                                    <constraint firstAttribute="width" constant="64" id="yfg-tf-sPe"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="sweepHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="G62-41-cQl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDg-u9-bOx" userLabel="buo-touch">
-                                <rect key="frame" x="0.0" y="517" width="64" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="bR2-T6-p8F"/>
-                                    <constraint firstAttribute="height" constant="64" id="fup-L5-had"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="buoyanceHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="GRV-jU-Qjw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRe-C7-8Ox" userLabel="dragon-white-touch">
@@ -327,20 +327,29 @@
                     <connections>
                         <outlet property="addObjectButton" destination="xcf-ic-uGo" id="uFa-W2-4Iu"/>
                         <outlet property="buoyancyButton" destination="nfY-ab-fha" id="kXF-uE-bUv"/>
+                        <outlet property="buoyancyTouch" destination="uDg-u9-bOx" id="9HY-SP-J27"/>
                         <outlet property="debugMessageLabel" destination="Cxm-GD-h1F" id="0BW-FJ-xmR"/>
                         <outlet property="dragonBlackButton" destination="93u-ta-Wz7" id="BNI-dq-XtI"/>
+                        <outlet property="dragonBlackTouch" destination="KLn-Ir-Pyi" id="EqX-7e-bNE"/>
                         <outlet property="dragonBlueButton" destination="F39-ay-WoA" id="qSb-Jy-BuU"/>
+                        <outlet property="dragonBlueTouch" destination="JeD-3D-KKm" id="Ua3-kV-Czg"/>
                         <outlet property="dragonButton" destination="y6W-wK-bDp" id="Wf7-mg-mI1"/>
                         <outlet property="dragonGreenButton" destination="r38-yt-ZfY" id="Rrd-vW-yoX"/>
+                        <outlet property="dragonGreenTouch" destination="eB5-45-hMy" id="FNN-kh-7E2"/>
                         <outlet property="dragonPurpleButton" destination="P2Z-6j-osO" id="DG2-vC-3jg"/>
+                        <outlet property="dragonPurpleTouch" destination="qTH-s7-nS6" id="QvU-e5-hs1"/>
                         <outlet property="dragonRedButton" destination="a6W-wZ-JKT" id="HXZ-hP-Dhj"/>
+                        <outlet property="dragonRedTouch" destination="pOE-iZ-XP8" id="g3W-jg-cXP"/>
+                        <outlet property="dragonTouch" destination="nRe-C7-8Ox" id="AUi-N1-Oj0"/>
                         <outlet property="dragonYellowButton" destination="Siq-6l-Xj8" id="CP0-s1-uQ6"/>
+                        <outlet property="dragonYellowTouch" destination="Q4E-0L-tQl" id="4Bs-Gs-8Gh"/>
                         <outlet property="featurePointCountLabel" destination="2ZI-fK-iax" id="wpJ-fJ-Kn2"/>
                         <outlet property="messageLabel" destination="Mqz-65-rAs" id="G3a-qn-5g9"/>
                         <outlet property="messagePanel" destination="9e0-zv-RiN" id="pKf-hp-Dvx"/>
                         <outlet property="sceneView" destination="E6c-py-dvH" id="I70-TL-39m"/>
                         <outlet property="settingsButton" destination="j8v-6q-UBb" id="wZV-ib-D05"/>
                         <outlet property="sweepButton" destination="Qs6-cE-d5q" id="r5g-ye-PYx"/>
+                        <outlet property="sweepTouch" destination="pXv-xc-4D6" id="GIB-LE-59I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -356,7 +365,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.97521605879706719" green="0.96929827514399636" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textField key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="当前版本: 0.0.2" textAlignment="center" minimumFontSize="17" id="rpV-9W-vzj">
+                        <textField key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="当前版本: 0.0.3" textAlignment="center" minimumFontSize="17" id="rpV-9W-vzj">
                             <rect key="frame" x="0.0" y="301" width="375" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
