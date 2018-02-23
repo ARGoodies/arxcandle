@@ -56,7 +56,7 @@ class VirtualObjectSelectionViewController: UIViewController, UITableViewDataSou
         var ps = self.delegate?.getPlaneStatus(self)
         
         if ps == 0 {
-            let alert = UIAlertController(title: "", message: "平面信息不足", preferredStyle: .alert)
+            let alert = UIAlertController(title: "平面信息不足", message: "", preferredStyle: .alert)
             
             Mixpanel.mainInstance().track(event: "block-load")
 
