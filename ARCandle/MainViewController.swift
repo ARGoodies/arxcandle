@@ -51,8 +51,9 @@ class MainViewController: UIViewController {
 		setupFocusSquare()
 		updateSettings()
 		resetVirtualObject()
+        hideAdd()
         
-        textManager.showMessage("找个可以放东西的平面吧")
+        textManager.showMessage("请寻找光滑平面")
         
         sceneView.scene.physicsWorld.contactDelegate = self as? SCNPhysicsContactDelegate
         sceneView.scene.physicsWorld.gravity = SCNVector3(x: 0.0, y: 0.0, z: 0.0)
@@ -108,7 +109,9 @@ class MainViewController: UIViewController {
 		}
 	}
 
+ 
 	@IBOutlet weak var addObjectButton: UIButton!
+    
 
 	@IBAction func chooseObject(_ button: UIButton) {
 		// Abort if we are about to load another object to avoid concurrent modifications of the scene.
@@ -147,11 +150,11 @@ class MainViewController: UIViewController {
 		node.addChildNode(plane)
 
 		textManager.cancelScheduledMessage(forType: .planeEstimation)
-		textManager.showMessage("平面已找到")
+		//textManager.showMessage("平面已找到")
         Mixpanel.mainInstance().track(event: "add-plane")
 		if !VirtualObjectsManager.shared.isAVirtualObjectPlaced() {
             planeStatus = 1;
-			textManager.scheduleMessage("可以放置蜡烛了", inSeconds: 2, messageType: .contentPlacement)
+			//textManager.scheduleMessage("可以放置蜡烛了", inSeconds: 2, messageType: .contentPlacement)
 		}
 	}
 
@@ -325,6 +328,11 @@ class MainViewController: UIViewController {
         })
 
     }
+    
+    
+    
+    @IBOutlet weak var findingText: UILabel!
+    
 
     @IBOutlet var sweepButton: UIButton!
     @IBOutlet var sweepTouch: UIButton!
@@ -543,6 +551,8 @@ extension MainViewController {
 			}
 		case .normal:
 			textManager.cancelScheduledMessage(forType: .trackingStateEscalation)
+            //findingText.text = "请前后拉伸镜头直到选择框变亮"
+            showAdd()
 			if use3DOFTrackingFallback && trackingFallbackTimer != nil {
 				trackingFallbackTimer!.invalidate()
 				trackingFallbackTimer = nil
@@ -563,7 +573,10 @@ extension MainViewController {
                 UIApplication.shared.openURL(url! as URL)
             }
         }))
+        let alert2 = UIAlertController(title: "", message: "请重启应用", preferredStyle: .alert)
+        
         self.present(alert, animated: true, completion: nil)
+        self.present(alert2, animated: true, completion: nil)
     }
     
 
@@ -650,7 +663,7 @@ extension MainViewController {
 
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		if !VirtualObjectsManager.shared.isAVirtualObjectPlaced() {
-			chooseObject(addObjectButton)
+			//chooseObject(addObjectButton)
 			return
 		}
 
@@ -990,6 +1003,17 @@ extension MainViewController {
         dragonPurpleTouch.isHidden = true
         dragonRedTouch.isHidden = true
     }
+
+    func showAdd() {
+        addObjectButton.isHidden = false
+        findingText.isHidden = true
+    }
+    
+    func hideAdd() {
+        addObjectButton.isHidden = true
+        findingText.isHidden = false
+        findingText.text = "正在检测光滑平面"
+    }
     
     func toggleColors() {
         if (isColorShow == true) {
@@ -1033,6 +1057,7 @@ extension MainViewController {
 		VirtualObjectsManager.shared.resetVirtualObjects()
         planeStatus = 0
         hideDashBoard()
+        //hideAdd()
 
 		addObjectButton.setImage(#imageLiteral(resourceName: "add"), for: [])
 		addObjectButton.setImage(#imageLiteral(resourceName: "addPressed"), for: [.highlighted])

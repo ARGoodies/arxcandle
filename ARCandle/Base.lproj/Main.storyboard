@@ -270,6 +270,12 @@
                                     <action selector="dragonBlackHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="29D-fX-aCA"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FindingText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGb-u7-KJb">
+                                <rect key="frame" x="153" y="325.5" width="70" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -294,8 +300,10 @@
                             <constraint firstItem="Q4E-0L-tQl" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="KuO-bJ-nf5"/>
                             <constraint firstItem="pXv-xc-4D6" firstAttribute="leading" secondItem="E6c-py-dvH" secondAttribute="leading" id="Ost-Dh-8Z7"/>
                             <constraint firstItem="j8v-6q-UBb" firstAttribute="top" secondItem="E6c-py-dvH" secondAttribute="top" constant="15" id="PRF-VG-JRh"/>
+                            <constraint firstItem="QGb-u7-KJb" firstAttribute="centerX" secondItem="RLh-bf-1c3" secondAttribute="centerX" id="QCR-e9-yeQ"/>
                             <constraint firstItem="pOE-iZ-XP8" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="R6s-Tj-oqN"/>
                             <constraint firstItem="eB5-45-hMy" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-256" id="ShV-SX-tVn"/>
+                            <constraint firstItem="QGb-u7-KJb" firstAttribute="centerY" secondItem="RLh-bf-1c3" secondAttribute="centerY" id="YOu-hx-UBR"/>
                             <constraint firstItem="xcf-ic-uGo" firstAttribute="centerX" secondItem="GBj-4O-Whc" secondAttribute="centerX" id="ZCe-ld-yQW"/>
                             <constraint firstItem="F39-ay-WoA" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-10" id="aL4-NI-ZMI"/>
                             <constraint firstItem="y6W-wK-bDp" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-16" id="bZv-EY-gkh"/>
@@ -344,6 +352,7 @@
                         <outlet property="dragonYellowButton" destination="Siq-6l-Xj8" id="CP0-s1-uQ6"/>
                         <outlet property="dragonYellowTouch" destination="Q4E-0L-tQl" id="4Bs-Gs-8Gh"/>
                         <outlet property="featurePointCountLabel" destination="2ZI-fK-iax" id="wpJ-fJ-Kn2"/>
+                        <outlet property="findingText" destination="QGb-u7-KJb" id="NqE-1f-ZtI"/>
                         <outlet property="messageLabel" destination="Mqz-65-rAs" id="G3a-qn-5g9"/>
                         <outlet property="messagePanel" destination="9e0-zv-RiN" id="pKf-hp-Dvx"/>
                         <outlet property="sceneView" destination="E6c-py-dvH" id="I70-TL-39m"/>
@@ -365,7 +374,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.97521605879706719" green="0.96929827514399636" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textField key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="当前版本: 0.0.4" textAlignment="center" minimumFontSize="17" id="rpV-9W-vzj">
+                        <textField key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="当前版本: 1.0.0" textAlignment="center" minimumFontSize="17" id="rpV-9W-vzj">
                             <rect key="frame" x="0.0" y="301" width="375" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
