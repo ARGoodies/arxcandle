@@ -96,7 +96,7 @@ class SettingsViewController: UITableViewController {
     
         Mixpanel.mainInstance().track(event: "support-device")
         
-        let alert = UIAlertController(title: "", message: "可兼容机型包括\n\niPhone 6s / 6s Plus\n\niPhone 7 / 7 Plus\n\niPhone 8 / 8 Plus\n\niPhone SE\n\niPhone X ", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "", message: "可兼容机型包括\n\niPhone 6s\n\niPhone 6s Plus\n\niPhone 7\n\niPhone 7 Plus\n\niPhone 8\n\niPhone 8 Plus\n\niPhone SE\n\niPhone X ", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)

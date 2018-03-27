@@ -7,7 +7,7 @@ extension ARCamera.TrackingState {
         case .notAvailable:
             return "平面寻找出现异常啦"
         case .normal:
-            return "寻找平面中"
+            return "平面定位中"
         case .limited(let reason):
             switch reason {
             case .excessiveMotion:
@@ -15,7 +15,7 @@ extension ARCamera.TrackingState {
             case .insufficientFeatures:
                 return "平面周围环境信息还不够"
             case .initializing:
-                return "找个可以放东西的平面吧"
+                return "正在检测光滑平面"
             }
         }
 	}

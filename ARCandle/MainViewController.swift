@@ -600,7 +600,7 @@ extension MainViewController {
             
             sceneView.session.run(configuration)
         } else {
-            let sessionErrorMsg = "该设备不支持ARKit\n\n支持的设备如下\n\niPhone 6s / 6s Plus\n\niPhone 7 / 7 Plus\n\niPhone SE\n\niPhone 8 / 8 Plus\n\niPhone X "
+            let sessionErrorMsg = "该设备不支持ARKit\n\n支持的设备如下\n\niPhone 6s\n\niPhone 6s Plus\n\niPhone 7\n\niPhone 7 Plus\n\niPhone 8\n\niPhone 8 Plus\n\niPhone SE\n\niPhone X "
             Mixpanel.mainInstance().track(event: "no-arkit")
             displayErrorMessage(title: "", message: sessionErrorMsg, allowRestart: false)
         }
