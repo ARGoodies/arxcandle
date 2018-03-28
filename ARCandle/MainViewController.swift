@@ -329,6 +329,61 @@ class MainViewController: UIViewController {
 
     }
     
+    @IBOutlet weak var shotButton: UIButton!
+    @IBOutlet weak var shotTouch: UIButton!
+    
+    @IBAction func shotAskHandler(_ sender: Any) {
+        self.toShotHandler()
+    }
+    
+    func toShotHandler() {
+        let spinner = UIActivityIndicatorView()
+        spinner.center = shotButton.center
+        spinner.bounds.size = CGSize(width: shotButton.bounds.width - 5, height: shotButton.bounds.height - 5)
+        shotButton.setImage(#imageLiteral(resourceName: "buttonring"), for: [])
+        sceneView.addSubview(spinner)
+        spinner.startAnimating()
+        let img = self.getShot()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8, execute: {
+            spinner.removeFromSuperview()
+            self.shotButton.setImage(img, for: [])
+            Mixpanel.mainInstance().track(event: "shot")
+        })
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6, execute: {
+            self.shot2Share(image: img)
+        })
+    }
+    
+    
+    // 截屏
+    func getShot() -> UIImage {
+        //Create the UIImage
+        let image = sceneView.snapshot()
+        //Save it to the camera roll
+        return image;
+    }
+    
+    // 分享
+    func shot2Share(image: UIImage) {
+        let alert = UIAlertController(title: "", message: "截屏成功 是否分享到社交媒体?", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("分享", comment: "sure"), style: .`default`, handler: { _ in
+            Mixpanel.mainInstance().track(event: "share-shot")
+            let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: nil)
+            self.clearShotedImage()
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
+            self.clearShotedImage()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func clearShotedImage() {
+        self.shotButton.setImage(UIImage(named: "shot"), for: [])
+    }
+    
     
     
     @IBOutlet weak var findingText: UILabel!
@@ -397,11 +452,6 @@ class MainViewController: UIViewController {
         })
     }
     
-    @IBOutlet var dragonBlackButton: UIButton!
-    @IBOutlet var dragonBlackTouch: UIButton!
-    @IBAction func dragonBlackHandler(_ sender: Any) {
-        loadSpinnerOfDragonButton(colorname: "black")
-    }
     
     @IBOutlet var dragonYellowButton: UIButton!
     @IBOutlet var dragonYellowTouch: UIButton!
@@ -565,18 +615,18 @@ extension MainViewController {
 
         Mixpanel.mainInstance().track(event: "camera-crash")
 
-        let alert = UIAlertController(title: "", message: "AR场景需要开启相机权限", preferredStyle: .alert)
+        let alert = UIAlertController(title: "相机权限未开启", message: "AR场景的呈现需要开启相机权限", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("去开启", comment: "sure"), style: .`destructive`, handler: { _ in
             
             let url = NSURL.init(string: UIApplicationOpenSettingsURLString)
             if (UIApplication.shared.canOpenURL(url! as URL)) {
                 UIApplication.shared.openURL(url! as URL)
             }
+            
+            self.present(alert, animated: true, completion: nil)
         }))
-        let alert2 = UIAlertController(title: "", message: "请重启应用", preferredStyle: .alert)
         
         self.present(alert, animated: true, completion: nil)
-        self.present(alert2, animated: true, completion: nil)
     }
     
 
@@ -970,10 +1020,12 @@ extension MainViewController {
         }
         dragonButton.isHidden = false
         buoyancyButton.isHidden = false
+        shotButton.isHidden = false
         sweepButton.isHidden = false
         
         
         buoyancyTouch.isHidden = false
+        shotTouch.isHidden = false
         sweepTouch.isHidden = false
         dragonTouch.isHidden = false
         
@@ -983,9 +1035,9 @@ extension MainViewController {
     func hideDashBoard() {
         isDashBoardShow = false
         buoyancyButton.isHidden = true
+        shotButton.isHidden = true
         sweepButton.isHidden = true
         dragonButton.isHidden = true
-        dragonBlackButton.isHidden = true
         dragonYellowButton.isHidden = true
         dragonGreenButton.isHidden = true
         dragonBlueButton.isHidden = true
@@ -993,10 +1045,10 @@ extension MainViewController {
         dragonRedButton.isHidden = true
     
         buoyancyTouch.isHidden = true
+        shotTouch.isHidden = true
         sweepTouch.isHidden = true
         dragonTouch.isHidden = true
         
-        dragonBlackTouch.isHidden = true
         dragonYellowTouch.isHidden = true
         dragonGreenTouch.isHidden = true
         dragonBlueTouch.isHidden = true
@@ -1018,14 +1070,12 @@ extension MainViewController {
     func toggleColors() {
         if (isColorShow == true) {
             isColorShow = false
-            dragonBlackButton.isHidden = true
             dragonYellowButton.isHidden = true
             dragonGreenButton.isHidden = true
             dragonBlueButton.isHidden = true
             dragonPurpleButton.isHidden = true
             dragonRedButton.isHidden = true
             
-            dragonBlackTouch.isHidden = true
             dragonYellowTouch.isHidden = true
             dragonGreenTouch.isHidden = true
             dragonBlueTouch.isHidden = true
@@ -1035,14 +1085,12 @@ extension MainViewController {
         }
         else{
             isColorShow = true
-            dragonBlackButton.isHidden = false
             dragonYellowButton.isHidden = false
             dragonGreenButton.isHidden = false
             dragonBlueButton.isHidden = false
             dragonPurpleButton.isHidden = false
             dragonRedButton.isHidden = false
             
-            dragonBlackTouch.isHidden = false
             dragonYellowTouch.isHidden = false
             dragonGreenTouch.isHidden = false
             dragonBlueTouch.isHidden = false

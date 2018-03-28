@@ -57,6 +57,27 @@
                                     <action selector="chooseObject:" destination="BV1-FR-VrT" eventType="touchUpInside" id="6wa-rW-fJZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Uy-2k-tTg" userLabel="shot Button">
+                                <rect key="frame" x="317" y="603" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="4yL-CN-64r"/>
+                                    <constraint firstAttribute="width" constant="48" id="8cf-Vw-xs8"/>
+                                </constraints>
+                                <state key="normal" image="shot"/>
+                                <connections>
+                                    <action selector="shotAskHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="BfO-NK-UEc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppn-t2-M8N" userLabel="shot-touch">
+                                <rect key="frame" x="311" y="603" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="IWU-v6-2r6"/>
+                                    <constraint firstAttribute="height" constant="64" id="itI-vI-ztJ"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="shotAskHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="OcA-di-6KH"/>
+                                </connections>
+                            </button>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="9e0-zv-RiN" userLabel="Message Panel">
                                 <rect key="frame" x="15" y="15" width="0.0" height="88"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="AVp-TR-4Nw">
@@ -152,56 +173,49 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6W-wK-bDp" userLabel="dragon-flu">
-                                <rect key="frame" x="317" y="603" width="48" height="48"/>
+                                <rect key="frame" x="317" y="533" width="48" height="48"/>
                                 <state key="normal" image="white-flu"/>
                                 <connections>
                                     <action selector="dragonHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="tEo-JG-Yum"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6W-wZ-JKT" userLabel="dragon-flu">
-                                <rect key="frame" x="317" y="543" width="48" height="48"/>
+                                <rect key="frame" x="317" y="473" width="48" height="48"/>
                                 <state key="normal" image="red-flu"/>
                                 <connections>
                                     <action selector="dragonRedHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="Ohb-Dh-46c"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2Z-6j-osO" userLabel="dragon-flu">
-                                <rect key="frame" x="317" y="483" width="48" height="48"/>
+                                <rect key="frame" x="317" y="413" width="48" height="48"/>
                                 <state key="normal" image="purple-flu"/>
                                 <connections>
                                     <action selector="dragonPurpleHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="vI5-NP-M6i"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F39-ay-WoA" userLabel="dragon-flu">
-                                <rect key="frame" x="317" y="423" width="48" height="48"/>
+                                <rect key="frame" x="317" y="353" width="48" height="48"/>
                                 <state key="normal" image="blue-flu"/>
                                 <connections>
                                     <action selector="dragonBlueHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="c6w-d0-N62"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r38-yt-ZfY" userLabel="dragon-flu">
-                                <rect key="frame" x="317" y="363" width="48" height="48"/>
+                                <rect key="frame" x="317" y="293" width="48" height="48"/>
                                 <state key="normal" image="green-flu"/>
                                 <connections>
                                     <action selector="dragonGreenHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="3uR-TO-Nrx"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93u-ta-Wz7" userLabel="dragon-flu">
-                                <rect key="frame" x="317" y="243" width="48" height="48"/>
-                                <state key="normal" image="black-flu"/>
-                                <connections>
-                                    <action selector="dragonBlackHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="mUq-gH-ypx"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Siq-6l-Xj8" userLabel="dragon-flu">
-                                <rect key="frame" x="317" y="303" width="48" height="48"/>
+                                <rect key="frame" x="317" y="233" width="48" height="48"/>
                                 <state key="normal" image="yellow-flu"/>
                                 <connections>
                                     <action selector="dragonYellowHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="6rl-NX-lfp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRe-C7-8Ox" userLabel="dragon-white-touch">
-                                <rect key="frame" x="311" y="603" width="64" height="48"/>
+                                <rect key="frame" x="311" y="533" width="64" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="CmM-aw-zub"/>
                                     <constraint firstAttribute="width" constant="64" id="UlI-Vw-c4y"/>
@@ -211,7 +225,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOE-iZ-XP8" userLabel="dragon-red-touch">
-                                <rect key="frame" x="311" y="543" width="64" height="48"/>
+                                <rect key="frame" x="311" y="473" width="64" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="YpW-eT-MR8"/>
                                     <constraint firstAttribute="height" constant="48" id="h8u-91-3Qw"/>
@@ -221,7 +235,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTH-s7-nS6" userLabel="dragon-purple-touch">
-                                <rect key="frame" x="311" y="483" width="64" height="48"/>
+                                <rect key="frame" x="311" y="413" width="64" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="XcZ-4k-zXh"/>
                                     <constraint firstAttribute="height" constant="48" id="sDr-di-45K"/>
@@ -231,7 +245,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeD-3D-KKm" userLabel="dragon-blue-touch">
-                                <rect key="frame" x="311" y="423" width="64" height="48"/>
+                                <rect key="frame" x="311" y="353" width="64" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="OVH-cD-tAO"/>
                                     <constraint firstAttribute="height" constant="48" id="RSo-Ip-Ur2"/>
@@ -241,7 +255,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eB5-45-hMy" userLabel="dragon-green-touch">
-                                <rect key="frame" x="311" y="363" width="64" height="48"/>
+                                <rect key="frame" x="311" y="293" width="64" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="JvC-ob-l3d"/>
                                     <constraint firstAttribute="width" constant="64" id="z6j-A9-uLh"/>
@@ -251,23 +265,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4E-0L-tQl" userLabel="dragon-yellow-touch">
-                                <rect key="frame" x="311" y="303" width="64" height="48"/>
+                                <rect key="frame" x="311" y="233" width="64" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="8ZD-XV-J1B"/>
                                     <constraint firstAttribute="width" constant="64" id="Jdv-YL-sWO"/>
                                 </constraints>
                                 <connections>
                                     <action selector="dragonYellowHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="Mqi-1O-u6x"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLn-Ir-Pyi" userLabel="dragon-black-touch">
-                                <rect key="frame" x="311" y="243" width="64" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="Rs8-1Y-nse"/>
-                                    <constraint firstAttribute="width" constant="64" id="t85-dQ-ghr"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="dragonBlackHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="29D-fX-aCA"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FindingText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGb-u7-KJb">
@@ -279,50 +283,50 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KLn-Ir-Pyi" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="2uU-Oj-AKm"/>
                             <constraint firstItem="y6W-wK-bDp" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-10" id="35p-Gv-tUn"/>
+                            <constraint firstItem="0Uy-2k-tTg" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-10" id="3Y8-uv-A1C"/>
                             <constraint firstItem="uDg-u9-bOx" firstAttribute="leading" secondItem="E6c-py-dvH" secondAttribute="leading" id="6cE-9V-a6B"/>
-                            <constraint firstItem="r38-yt-ZfY" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-256" id="6fl-3q-42X"/>
+                            <constraint firstItem="r38-yt-ZfY" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-326" id="6fl-3q-42X"/>
                             <constraint firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" id="6h6-BI-mhL"/>
                             <constraint firstItem="E6c-py-dvH" firstAttribute="top" secondItem="RLh-bf-1c3" secondAttribute="top" id="7gH-DS-Crg"/>
-                            <constraint firstItem="qTH-s7-nS6" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-136" id="83t-bz-Vod"/>
+                            <constraint firstItem="qTH-s7-nS6" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-206" id="83t-bz-Vod"/>
                             <constraint firstItem="P2Z-6j-osO" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-10" id="8Uu-LH-Hok"/>
                             <constraint firstItem="E6c-py-dvH" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="8nh-ZQ-AuM"/>
+                            <constraint firstItem="ppn-t2-M8N" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="9Ua-H5-3n7"/>
                             <constraint firstItem="Siq-6l-Xj8" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-10" id="B5Z-VO-pHf"/>
-                            <constraint firstItem="pOE-iZ-XP8" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-76" id="C0f-6S-g4U"/>
+                            <constraint firstItem="pOE-iZ-XP8" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-146" id="C0f-6S-g4U"/>
                             <constraint firstItem="Qs6-cE-d5q" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-16" id="CwC-Kq-Uto"/>
-                            <constraint firstItem="a6W-wZ-JKT" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-76" id="EL8-FM-tS4"/>
+                            <constraint firstItem="a6W-wZ-JKT" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-146" id="EL8-FM-tS4"/>
                             <constraint firstItem="eB5-45-hMy" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="FMR-h6-9oc"/>
                             <constraint firstItem="9e0-zv-RiN" firstAttribute="top" secondItem="E6c-py-dvH" secondAttribute="top" constant="15" id="FTS-AH-WBr"/>
-                            <constraint firstItem="93u-ta-Wz7" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-10" id="Fde-61-qej"/>
-                            <constraint firstItem="F39-ay-WoA" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-196" id="HNE-Ws-5lr"/>
+                            <constraint firstItem="ppn-t2-M8N" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" id="Gjc-bo-ukO"/>
+                            <constraint firstItem="F39-ay-WoA" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-266" id="HNE-Ws-5lr"/>
                             <constraint firstItem="j8v-6q-UBb" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-5" id="Iz6-94-ZyB"/>
                             <constraint firstItem="Q4E-0L-tQl" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="KuO-bJ-nf5"/>
                             <constraint firstItem="pXv-xc-4D6" firstAttribute="leading" secondItem="E6c-py-dvH" secondAttribute="leading" id="Ost-Dh-8Z7"/>
                             <constraint firstItem="j8v-6q-UBb" firstAttribute="top" secondItem="E6c-py-dvH" secondAttribute="top" constant="15" id="PRF-VG-JRh"/>
                             <constraint firstItem="QGb-u7-KJb" firstAttribute="centerX" secondItem="RLh-bf-1c3" secondAttribute="centerX" id="QCR-e9-yeQ"/>
                             <constraint firstItem="pOE-iZ-XP8" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="R6s-Tj-oqN"/>
-                            <constraint firstItem="eB5-45-hMy" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-256" id="ShV-SX-tVn"/>
+                            <constraint firstItem="eB5-45-hMy" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-326" id="ShV-SX-tVn"/>
                             <constraint firstItem="QGb-u7-KJb" firstAttribute="centerY" secondItem="RLh-bf-1c3" secondAttribute="centerY" id="YOu-hx-UBR"/>
                             <constraint firstItem="xcf-ic-uGo" firstAttribute="centerX" secondItem="GBj-4O-Whc" secondAttribute="centerX" id="ZCe-ld-yQW"/>
                             <constraint firstItem="F39-ay-WoA" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-10" id="aL4-NI-ZMI"/>
-                            <constraint firstItem="y6W-wK-bDp" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-16" id="bZv-EY-gkh"/>
-                            <constraint firstItem="Q4E-0L-tQl" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-316" id="c7H-la-cZr"/>
+                            <constraint firstItem="y6W-wK-bDp" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-86" id="bZv-EY-gkh"/>
+                            <constraint firstItem="Q4E-0L-tQl" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-386" id="c7H-la-cZr"/>
                             <constraint firstItem="JeD-3D-KKm" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="d2U-go-th7"/>
-                            <constraint firstItem="KLn-Ir-Pyi" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-376" id="e9q-oT-4hT"/>
                             <constraint firstItem="nfY-ab-fha" firstAttribute="leading" secondItem="E6c-py-dvH" secondAttribute="leading" constant="10" id="evV-uz-xFJ"/>
-                            <constraint firstItem="JeD-3D-KKm" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-196" id="gb0-jr-Dz0"/>
+                            <constraint firstItem="JeD-3D-KKm" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-266" id="gb0-jr-Dz0"/>
                             <constraint firstItem="nRe-C7-8Ox" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="glj-Dt-xlI"/>
+                            <constraint firstItem="0Uy-2k-tTg" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-16" id="h68-gy-WDt"/>
                             <constraint firstItem="Qs6-cE-d5q" firstAttribute="leading" secondItem="E6c-py-dvH" secondAttribute="leading" constant="10" id="hXD-m4-VKI"/>
                             <constraint firstItem="9e0-zv-RiN" firstAttribute="leading" secondItem="E6c-py-dvH" secondAttribute="leading" constant="15" id="iIf-WZ-kZj"/>
-                            <constraint firstItem="93u-ta-Wz7" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-376" id="iPU-fZ-i7N"/>
                             <constraint firstItem="uDg-u9-bOx" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-86" id="jZF-os-SA6"/>
                             <constraint firstItem="q5A-xD-w2H" firstAttribute="top" secondItem="E6c-py-dvH" secondAttribute="top" id="jxs-dy-3aO"/>
-                            <constraint firstItem="P2Z-6j-osO" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-136" id="kxT-fG-2Em"/>
+                            <constraint firstItem="P2Z-6j-osO" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-206" id="kxT-fG-2Em"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="lHd-lf-g1u"/>
-                            <constraint firstItem="Siq-6l-Xj8" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-316" id="mMK-kD-76b"/>
+                            <constraint firstItem="Siq-6l-Xj8" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-386" id="mMK-kD-76b"/>
                             <constraint firstItem="a6W-wZ-JKT" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-10" id="qkX-Ev-ufE"/>
-                            <constraint firstItem="nRe-C7-8Ox" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-16" id="ryc-W7-hqT"/>
+                            <constraint firstItem="nRe-C7-8Ox" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-86" id="ryc-W7-hqT"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="xcf-ic-uGo" secondAttribute="bottom" constant="15" id="sOL-M5-nW8"/>
                             <constraint firstItem="nfY-ab-fha" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" constant="-86" id="tWD-pd-EHx"/>
                             <constraint firstItem="pXv-xc-4D6" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" id="tZ8-L1-YZe"/>
@@ -337,8 +341,6 @@
                         <outlet property="buoyancyButton" destination="nfY-ab-fha" id="kXF-uE-bUv"/>
                         <outlet property="buoyancyTouch" destination="uDg-u9-bOx" id="9HY-SP-J27"/>
                         <outlet property="debugMessageLabel" destination="Cxm-GD-h1F" id="0BW-FJ-xmR"/>
-                        <outlet property="dragonBlackButton" destination="93u-ta-Wz7" id="BNI-dq-XtI"/>
-                        <outlet property="dragonBlackTouch" destination="KLn-Ir-Pyi" id="EqX-7e-bNE"/>
                         <outlet property="dragonBlueButton" destination="F39-ay-WoA" id="qSb-Jy-BuU"/>
                         <outlet property="dragonBlueTouch" destination="JeD-3D-KKm" id="Ua3-kV-Czg"/>
                         <outlet property="dragonButton" destination="y6W-wK-bDp" id="Wf7-mg-mI1"/>
@@ -357,6 +359,8 @@
                         <outlet property="messagePanel" destination="9e0-zv-RiN" id="pKf-hp-Dvx"/>
                         <outlet property="sceneView" destination="E6c-py-dvH" id="I70-TL-39m"/>
                         <outlet property="settingsButton" destination="j8v-6q-UBb" id="wZV-ib-D05"/>
+                        <outlet property="shotButton" destination="0Uy-2k-tTg" id="FrP-TH-Bk5"/>
+                        <outlet property="shotTouch" destination="ppn-t2-M8N" id="VQZ-fe-RhA"/>
                         <outlet property="sweepButton" destination="Qs6-cE-d5q" id="r5g-ye-PYx"/>
                         <outlet property="sweepTouch" destination="pXv-xc-4D6" id="GIB-LE-59I"/>
                     </connections>
@@ -375,7 +379,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.87732924111766519" green="0.87732924111766519" blue="0.87732924111766519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前版本: 1.0.2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tQh-dm-sJ2">
+                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前版本: 1.1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tQh-dm-sJ2">
                             <rect key="frame" x="0.0" y="329" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -513,7 +517,6 @@
     </scenes>
     <resources>
         <image name="add" width="100" height="100"/>
-        <image name="black-flu" width="48" height="48"/>
         <image name="blue-flu" width="48" height="48"/>
         <image name="buo" width="48" height="48"/>
         <image name="green-flu" width="48" height="48"/>
@@ -521,6 +524,7 @@
         <image name="red-flu" width="48" height="48"/>
         <image name="settings" width="100" height="100"/>
         <image name="settingsPressed" width="100" height="100"/>
+        <image name="shot" width="48" height="48"/>
         <image name="sweep" width="48" height="48"/>
         <image name="white-flu" width="48" height="48"/>
         <image name="yellow-flu" width="48" height="48"/>
