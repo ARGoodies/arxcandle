@@ -23,7 +23,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>为了展现小红烛的AR环境以及场景需要开启相机权限</string>
+	<string>为了展现应用的AR环境以及场景需要开启相机权限</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>我们需要位置权限去定位您的AR环境</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
