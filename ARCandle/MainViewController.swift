@@ -776,7 +776,9 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
 		let spinner = UIActivityIndicatorView()
 		spinner.center = addObjectButton.center
 		spinner.bounds.size = CGSize(width: addObjectButton.bounds.width - 5, height: addObjectButton.bounds.height - 5)
-		addObjectButton.setImage(#imageLiteral(resourceName: "buttonring"), for: [])
+        if (!isCandleShoundCount) {
+            addObjectButton.setImage(#imageLiteral(resourceName: "buttonring"), for: [])
+        }
 		sceneView.addSubview(spinner)
 		spinner.startAnimating()
 
@@ -820,8 +822,10 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
                 let isice = object.title == "寒冰蜡烛"
                 let buttonImage = UIImage.composeButtonImage(from: object.thumbImage, alpha: 0.8, isice: isice)
                 let pressedButtonImage = UIImage.composeButtonImage(from: object.thumbImage, alpha: 0.8, isice: isice)
-				self.addObjectButton.setImage(buttonImage, for: [])
-				self.addObjectButton.setImage(pressedButtonImage, for: [.highlighted])
+                if (!self.isCandleShoundCount) {
+                    self.addObjectButton.setImage(buttonImage, for: [])
+                    self.addObjectButton.setImage(pressedButtonImage, for: [.highlighted])
+                }
 				self.isLoadingObject = false
                 self.planeStatus = 2
                 self.textManager.showMessage("放置成功")
@@ -1101,8 +1105,10 @@ extension MainViewController {
         hideDashBoard()
         //hideAdd()
 
-		addObjectButton.setImage(#imageLiteral(resourceName: "add"), for: [])
-		addObjectButton.setImage(#imageLiteral(resourceName: "addPressed"), for: [.highlighted])
+        if (!isCandleShoundCount) {
+            addObjectButton.setImage(#imageLiteral(resourceName: "add"), for: [])
+            addObjectButton.setImage(#imageLiteral(resourceName: "addPressed"), for: [.highlighted])
+        }
         
 	}
 
