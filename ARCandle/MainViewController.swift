@@ -34,6 +34,9 @@ class MainViewController: UIViewController {
 
 	let DEFAULT_DISTANCE_CAMERA_TO_OBJECTS = Float(10)
     
+    var candle_count = 0
+    var isCandleShoundCount = false
+    
     var isDashBoardShow = false
     var isColorShow = false
 
@@ -57,6 +60,50 @@ class MainViewController: UIViewController {
         
         sceneView.scene.physicsWorld.contactDelegate = self as? SCNPhysicsContactDelegate
         sceneView.scene.physicsWorld.gravity = SCNVector3(x: 0.0, y: 0.0, z: 0.0)
+        
+        doLeadToCountWithTimeOut(20)
+        doLeadToCountWithTimeOut(50)
+        doLeadToCountWithTimeOut(100)
+        
+    }
+    
+    func doLeadToCountWithTimeOut(_ timeout: Int) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(timeout), execute: {
+            self.addObjectButton.setImage(UIImage(named: "doshare"), for: [])
+            self.addObjectButton.setImage(UIImage(named: "doshare"), for: [.highlighted])
+            self.isCandleShoundCount = true
+        })
+    }
+    
+    // 祭祀执行打卡
+    func doCountHandler() {
+        let story = "你今天一共\n\n点燃了[" + String(candle_count) + "支]蜡烛\n\n为环境保护事业\n\n节约了[" + String(candle_count * 85) + "g]碳排放量"
+        let share = "我今天一共点燃了[" + String(candle_count) + "支]蜡烛为环境保护事业节约了[" + String(candle_count * 85) + "g]碳排放量"
+        
+        let alert = UIAlertController(title: "", message: story, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("分享给好友", comment: "sure"), style: .`default`, handler: { _ in
+            Mixpanel.mainInstance().track(event: "share-carbon")
+            
+            let textToShare = share
+            
+            if let myWebsite = URL(string: "https://virtual-west.github.io/arxcandle-share/") {//Enter link to your app here
+                let objectsToShare = [textToShare, myWebsite] as [Any]
+                let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+                
+                //Excluded Activities
+                activityVC.excludedActivityTypes = []
+                //
+                
+                self.present(activityVC, animated: true, completion: nil)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("完成", comment: "cancel"), style: .`default`, handler: { _ in
+        }))
+        self.present(alert, animated: true, completion: nil)
+        addObjectButton.setImage(#imageLiteral(resourceName: "add"), for: [])
+        addObjectButton.setImage(#imageLiteral(resourceName: "addPressed"), for: [.highlighted])
+        self.isCandleShoundCount = false
+        Mixpanel.mainInstance().track(event: "do-count")
     }
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -116,6 +163,10 @@ class MainViewController: UIViewController {
 	@IBAction func chooseObject(_ button: UIButton) {
 		// Abort if we are about to load another object to avoid concurrent modifications of the scene.
 		if isLoadingObject { return }
+        if isCandleShoundCount {
+            doCountHandler()
+            return
+        }
 
 		textManager.cancelScheduledMessage(forType: .contentPlacement)
 
@@ -150,12 +201,12 @@ class MainViewController: UIViewController {
 		node.addChildNode(plane)
 
 		textManager.cancelScheduledMessage(forType: .planeEstimation)
-		//textManager.showMessage("平面已找到")
         Mixpanel.mainInstance().track(event: "add-plane")
 		if !VirtualObjectsManager.shared.isAVirtualObjectPlaced() {
             planeStatus = 1;
-			//textManager.scheduleMessage("可以放置蜡烛了", inSeconds: 2, messageType: .contentPlacement)
 		}
+        
+        
 	}
 
 	func restartPlaneDetection() {
@@ -328,61 +379,7 @@ class MainViewController: UIViewController {
         })
 
     }
-    
-    @IBOutlet weak var shotButton: UIButton!
-    @IBOutlet weak var shotTouch: UIButton!
-    
-    @IBAction func shotAskHandler(_ sender: Any) {
-        self.toShotHandler()
-    }
-    
-    func toShotHandler() {
-        let spinner = UIActivityIndicatorView()
-        spinner.center = shotButton.center
-        spinner.bounds.size = CGSize(width: shotButton.bounds.width - 5, height: shotButton.bounds.height - 5)
-        shotButton.setImage(#imageLiteral(resourceName: "buttonring"), for: [])
-        sceneView.addSubview(spinner)
-        spinner.startAnimating()
-        let img = self.getShot()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8, execute: {
-            spinner.removeFromSuperview()
-            self.shotButton.setImage(img, for: [])
-            Mixpanel.mainInstance().track(event: "shot")
-        })
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6, execute: {
-            self.shot2Share(image: img)
-        })
-    }
-    
-    
-    // 截屏
-    func getShot() -> UIImage {
-        //Create the UIImage
-        let image = sceneView.snapshot()
-        //Save it to the camera roll
-        return image;
-    }
-    
-    // 分享
-    func shot2Share(image: UIImage) {
-        let alert = UIAlertController(title: "", message: "截屏成功 是否分享到社交媒体?", preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("分享", comment: "sure"), style: .`default`, handler: { _ in
-            Mixpanel.mainInstance().track(event: "share-shot")
-            let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-            self.present(activityViewController, animated: true, completion: nil)
-            self.clearShotedImage()
-        }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
-            self.clearShotedImage()
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func clearShotedImage() {
-        self.shotButton.setImage(UIImage(named: "shot"), for: [])
-    }
     
     
     
@@ -775,6 +772,7 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
 	func loadVirtualObject(object: VirtualObject) {
 		// Show progress indicator
     
+        candle_count += 1
 		let spinner = UIActivityIndicatorView()
 		spinner.center = addObjectButton.center
 		spinner.bounds.size = CGSize(width: addObjectButton.bounds.width - 5, height: addObjectButton.bounds.height - 5)
@@ -1020,12 +1018,10 @@ extension MainViewController {
         }
         dragonButton.isHidden = false
         buoyancyButton.isHidden = false
-        shotButton.isHidden = false
         sweepButton.isHidden = false
         
         
         buoyancyTouch.isHidden = false
-        shotTouch.isHidden = false
         sweepTouch.isHidden = false
         dragonTouch.isHidden = false
         
@@ -1035,7 +1031,6 @@ extension MainViewController {
     func hideDashBoard() {
         isDashBoardShow = false
         buoyancyButton.isHidden = true
-        shotButton.isHidden = true
         sweepButton.isHidden = true
         dragonButton.isHidden = true
         dragonYellowButton.isHidden = true
@@ -1045,7 +1040,6 @@ extension MainViewController {
         dragonRedButton.isHidden = true
     
         buoyancyTouch.isHidden = true
-        shotTouch.isHidden = true
         sweepTouch.isHidden = true
         dragonTouch.isHidden = true
         
@@ -1109,6 +1103,7 @@ extension MainViewController {
 
 		addObjectButton.setImage(#imageLiteral(resourceName: "add"), for: [])
 		addObjectButton.setImage(#imageLiteral(resourceName: "addPressed"), for: [.highlighted])
+        
 	}
 
 	func updateVirtualObjectPosition(_ pos: SCNVector3, _ filterPosition: Bool) {
