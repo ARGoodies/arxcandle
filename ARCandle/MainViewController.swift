@@ -78,7 +78,7 @@ class MainViewController: UIViewController {
     // 祭祀执行打卡
     func doCountHandler() {
         let story = "你今天一共\n\n点燃了[" + String(candle_count) + "支]蜡烛\n\n为环境保护事业\n\n节约了[" + String(candle_count * 85) + "g]碳排放量"
-        let share = "我今天一共点燃了[" + String(candle_count) + "支]蜡烛为环境保护事业节约了[" + String(candle_count * 85) + "g]碳排放量"
+        let share = "我今天点燃了[" + String(candle_count) + "支]蜡烛节约了[" + String(candle_count * 85) + "g]碳排放量"
         
         let alert = UIAlertController(title: "", message: story, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("分享给好友", comment: "sure"), style: .`default`, handler: { _ in
