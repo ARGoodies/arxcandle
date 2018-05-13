@@ -89,7 +89,7 @@ class SettingsViewController: UITableViewController {
     }
     
     @IBAction func triggerShareTimeline(_ sender: UIButton) {
-        let textToShare = "<AR祭祀>AR祭祀祈福应用-增强现实x祭祀"
+        let textToShare = "<AR祈福>AR祈福应用-增强现实x祈福"
         
         Mixpanel.mainInstance().track(event: "share")
         
