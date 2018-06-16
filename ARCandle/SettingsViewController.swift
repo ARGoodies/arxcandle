@@ -68,7 +68,7 @@ class SettingsViewController: UITableViewController {
         let alert = UIAlertController(title: "", message: "是否允许启动邮箱", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
             Mixpanel.mainInstance().track(event: "mail")
-            UIApplication.shared.openURL(URL(string: "mailto:meloalrihgt@gamil.com?subject=Feedback")!)
+            UIApplication.shared.openURL(URL(string: "mailto:meloalright@gamil.com?subject=Feedback")!)
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
         }))
