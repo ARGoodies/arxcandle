@@ -26,11 +26,7 @@
 		A3D672EF1EF0E80200110E48 /* IceCandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D672EE1EF0E80200110E48 /* IceCandle.swift */; };
 		A3D672F11EF0E81B00110E48 /* RedCandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D672F01EF0E81B00110E48 /* RedCandle.swift */; };
 		B6015EA0203A7B25002DEA53 /* dragon-blue-fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = B6015E9A203A7B23002DEA53 /* dragon-blue-fire.scnp */; };
-		B6015EA1203A7B25002DEA53 /* dragon-red-fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = B6015E9B203A7B23002DEA53 /* dragon-red-fire.scnp */; };
 		B6015EA2203A7B25002DEA53 /* dragon-yellow-fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = B6015E9C203A7B24002DEA53 /* dragon-yellow-fire.scnp */; };
-		B6015EA3203A7B25002DEA53 /* dragon-purple-fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = B6015E9D203A7B24002DEA53 /* dragon-purple-fire.scnp */; };
-		B6015EA4203A7B25002DEA53 /* dragon-black-fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = B6015E9E203A7B24002DEA53 /* dragon-black-fire.scnp */; };
-		B6015EA5203A7B25002DEA53 /* dragon-green-fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = B6015E9F203A7B24002DEA53 /* dragon-green-fire.scnp */; };
 		B60CDD7D203602AA00DA3FB3 /* red-fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = B60CDD7C203602AA00DA3FB3 /* red-fire.scnp */; };
 		B60CDD852036DB9A00DA3FB3 /* buo.scnp in Resources */ = {isa = PBXBuildFile; fileRef = B60CDD842036DB9A00DA3FB3 /* buo.scnp */; };
 		B61FEA6B203348DD00E7F1AF /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FEA6A203348DD00E7F1AF /* Bullet.swift */; };
@@ -67,11 +63,7 @@
 		A3D672F01EF0E81B00110E48 /* RedCandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedCandle.swift; sourceTree = "<group>"; };
 		B33710B559226A0B6503293D /* Pods-ARCandle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARCandle.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARCandle/Pods-ARCandle.release.xcconfig"; sourceTree = "<group>"; };
 		B6015E9A203A7B23002DEA53 /* dragon-blue-fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = "dragon-blue-fire.scnp"; sourceTree = "<group>"; };
-		B6015E9B203A7B23002DEA53 /* dragon-red-fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = "dragon-red-fire.scnp"; sourceTree = "<group>"; };
 		B6015E9C203A7B24002DEA53 /* dragon-yellow-fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = "dragon-yellow-fire.scnp"; sourceTree = "<group>"; };
-		B6015E9D203A7B24002DEA53 /* dragon-purple-fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = "dragon-purple-fire.scnp"; sourceTree = "<group>"; };
-		B6015E9E203A7B24002DEA53 /* dragon-black-fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = "dragon-black-fire.scnp"; sourceTree = "<group>"; };
-		B6015E9F203A7B24002DEA53 /* dragon-green-fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = "dragon-green-fire.scnp"; sourceTree = "<group>"; };
 		B60CDD7C203602AA00DA3FB3 /* red-fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = "red-fire.scnp"; sourceTree = "<group>"; };
 		B60CDD842036DB9A00DA3FB3 /* buo.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = buo.scnp; sourceTree = "<group>"; };
 		B61FEA6A203348DD00E7F1AF /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
@@ -123,11 +115,7 @@
 		3929C48A1E89EC2C00E00B60 /* ARCandle */ = {
 			isa = PBXGroup;
 			children = (
-				B6015E9E203A7B24002DEA53 /* dragon-black-fire.scnp */,
 				B6015E9A203A7B23002DEA53 /* dragon-blue-fire.scnp */,
-				B6015E9F203A7B24002DEA53 /* dragon-green-fire.scnp */,
-				B6015E9D203A7B24002DEA53 /* dragon-purple-fire.scnp */,
-				B6015E9B203A7B23002DEA53 /* dragon-red-fire.scnp */,
 				B6015E9C203A7B24002DEA53 /* dragon-yellow-fire.scnp */,
 				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
 				3929C48D1E89EC2C00E00B60 /* MainViewController.swift */,
@@ -196,7 +184,6 @@
 				3929C4861E89EC2C00E00B60 /* Resources */,
 				582FB0701F43E63300AD8041 /* Run Script */,
 				EAA06C1FAC9977BD6FDBE85D /* [CP] Embed Pods Frameworks */,
-				14A40F8B56E8FD5F867F0297 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,6 +217,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -256,34 +244,15 @@
 				B60CDD7D203602AA00DA3FB3 /* red-fire.scnp in Resources */,
 				B6015EA0203A7B25002DEA53 /* dragon-blue-fire.scnp in Resources */,
 				B6D6ACA12033319A00C1AD0B /* spark.png in Resources */,
-				B6015EA4203A7B25002DEA53 /* dragon-black-fire.scnp in Resources */,
-				B6015EA5203A7B25002DEA53 /* dragon-green-fire.scnp in Resources */,
 				B6015EA2203A7B25002DEA53 /* dragon-yellow-fire.scnp in Resources */,
 				3929C4931E89EC2C00E00B60 /* Assets.xcassets in Resources */,
-				B6015EA1203A7B25002DEA53 /* dragon-red-fire.scnp in Resources */,
 				3929C4911E89EC2C00E00B60 /* Main.storyboard in Resources */,
-				B6015EA3203A7B25002DEA53 /* dragon-purple-fire.scnp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		14A40F8B56E8FD5F867F0297 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARCandle/Pods-ARCandle-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		582FB0701F43E63300AD8041 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,7 +291,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ARCandle/Pods-ARCandle-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ARCandle/Pods-ARCandle-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-swift/Mixpanel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -331,7 +300,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARCandle/Pods-ARCandle-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ARCandle/Pods-ARCandle-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -495,6 +464,7 @@
 				DEVELOPMENT_TEAM = 9TGD35M5GT;
 				INFOPLIST_FILE = "$(SRCROOT)/ARCandle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "meloalright.virtual-west.arcandle";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -515,6 +485,7 @@
 				DEVELOPMENT_TEAM = 9TGD35M5GT;
 				INFOPLIST_FILE = "$(SRCROOT)/ARCandle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "meloalright.virtual-west.arcandle";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

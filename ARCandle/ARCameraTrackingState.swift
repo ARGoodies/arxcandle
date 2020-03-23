@@ -16,6 +16,8 @@ extension ARCamera.TrackingState {
                 return "平面周围环境信息还不够"
             case .initializing:
                 return "正在检测光滑平面"
+            default:
+                return "..."
             }
         }
 	}

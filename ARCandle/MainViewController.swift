@@ -35,7 +35,6 @@ class MainViewController: UIViewController {
 	let DEFAULT_DISTANCE_CAMERA_TO_OBJECTS = Float(10)
     
     var candle_count = 0
-    var isCandleShoundCount = false
     
     var isDashBoardShow = false
     var isColorShow = false
@@ -61,19 +60,8 @@ class MainViewController: UIViewController {
         sceneView.scene.physicsWorld.contactDelegate = self as? SCNPhysicsContactDelegate
         sceneView.scene.physicsWorld.gravity = SCNVector3(x: 0.0, y: 0.0, z: 0.0)
         
-        doLeadToCountWithTimeOut(20)
-        doLeadToCountWithTimeOut(50)
-        doLeadToCountWithTimeOut(100)
-        
     }
-    
-    func doLeadToCountWithTimeOut(_ timeout: Int) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(timeout), execute: {
-            self.addObjectButton.setImage(UIImage(named: "doshare"), for: [])
-            self.addObjectButton.setImage(UIImage(named: "doshare"), for: [.highlighted])
-            self.isCandleShoundCount = true
-        })
-    }
+
     
     // 祈福执行打卡
     func doCountHandler() {
@@ -102,7 +90,6 @@ class MainViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
         addObjectButton.setImage(#imageLiteral(resourceName: "add"), for: [])
         addObjectButton.setImage(#imageLiteral(resourceName: "addPressed"), for: [.highlighted])
-        self.isCandleShoundCount = false
         Mixpanel.mainInstance().track(event: "do-count")
     }
 
@@ -163,10 +150,6 @@ class MainViewController: UIViewController {
 	@IBAction func chooseObject(_ button: UIButton) {
 		// Abort if we are about to load another object to avoid concurrent modifications of the scene.
 		if isLoadingObject { return }
-        if isCandleShoundCount {
-            doCountHandler()
-            return
-        }
 
 		textManager.cancelScheduledMessage(forType: .contentPlacement)
 
@@ -423,67 +406,25 @@ class MainViewController: UIViewController {
         })
     }
     
-    
-    @IBOutlet var dragonButton: UIButton!
-    @IBOutlet var dragonTouch: UIButton!
-    @IBAction func dragonHandler(_ sender: Any) {
-        self.toggleColors()
+
+    @IBOutlet weak var promtButton: UIButton!
+    @IBOutlet weak var promtTouch: UIButton!
+    @IBAction func promtHandler(_ sender: Any) {
+        promtMessage()
     }
 
 
-    func loadSpinnerOfDragonButton(colorname: String) {
-        self.toggleColors()
-        let spinner = UIActivityIndicatorView()
-        let d = "dragon-" + colorname + "-fire"
-        let i = colorname + "-flu"
-        spinner.center = dragonButton.center
-        spinner.bounds.size = CGSize(width: dragonButton.bounds.width - 5, height: dragonButton.bounds.height - 5)
-        dragonButton.setImage(#imageLiteral(resourceName: "buttonring"), for: [])
-        sceneView.addSubview(spinner)
-        spinner.startAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            spinner.removeFromSuperview()
-            VirtualObjectsManager.shared.dragoningVirtualObjects(firename: d)
-            self.dragonButton.setImage(UIImage(named: "white-flu"), for: [])
-            Mixpanel.mainInstance().track(event: d)
-        })
+    func promtMessage() {
+        Mixpanel.mainInstance().track(event: "promt-message")
+        let story = "寄托哀思"
+        
+        let alert = UIAlertController(title: "", message: story, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("填写信息", comment: "sure"), style: .`default`, handler: { _ in
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
-    
-    
-    @IBOutlet var dragonYellowButton: UIButton!
-    @IBOutlet var dragonYellowTouch: UIButton!
-    @IBAction func dragonYellowHandler(_ sender: Any) {
-        loadSpinnerOfDragonButton(colorname: "yellow")
-    }
-    
-    @IBOutlet var dragonGreenButton: UIButton!
-    @IBOutlet var dragonGreenTouch: UIButton!
-    @IBAction func dragonGreenHandler(_ sender: Any) {
-        loadSpinnerOfDragonButton(colorname: "green")
-    }
-    
-    @IBOutlet var dragonBlueButton: UIButton!
-    @IBOutlet var dragonBlueTouch: UIButton!
-    @IBAction func dragonBlueHandler(_ sender: Any) {
-        loadSpinnerOfDragonButton(colorname: "blue")
-    }
-    
-    @IBOutlet var dragonPurpleButton: UIButton!
-    @IBOutlet var dragonPurpleTouch: UIButton!
-    @IBAction func dragonPurpleHandler(_ sender: Any) {
-        loadSpinnerOfDragonButton(colorname: "purple")
-    }
-    
-    @IBOutlet var dragonRedButton: UIButton!
-    @IBOutlet var dragonRedTouch: UIButton!
-    @IBAction func dragonRedHandler(_ sender: Any) {
-        loadSpinnerOfDragonButton(colorname: "red")
-    }
-    
-    
-    
-    
-    
     
     
     @IBOutlet weak var settingsButton: UIButton!
@@ -647,7 +588,7 @@ extension MainViewController {
             
             sceneView.session.run(configuration)
         } else {
-            let sessionErrorMsg = "该设备不支持ARKit\n\n支持的设备如下\n\niPhone 6s\n\niPhone 6s Plus\n\niPhone 7\n\niPhone 7 Plus\n\niPhone 8\n\niPhone 8 Plus\n\niPhone SE\n\niPhone X\n\niPad Pro\n\niPad 2017"
+            let sessionErrorMsg = "该设备不支持ARKit"
             Mixpanel.mainInstance().track(event: "no-arkit")
             displayErrorMessage(title: "", message: sessionErrorMsg, allowRestart: false)
         }
@@ -776,9 +717,7 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
 		let spinner = UIActivityIndicatorView()
 		spinner.center = addObjectButton.center
 		spinner.bounds.size = CGSize(width: addObjectButton.bounds.width - 5, height: addObjectButton.bounds.height - 5)
-        if (!isCandleShoundCount) {
-            addObjectButton.setImage(#imageLiteral(resourceName: "buttonring"), for: [])
-        }
+
 		sceneView.addSubview(spinner)
 		spinner.startAnimating()
 
@@ -822,10 +761,6 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
                 let isice = object.title == "寒冰蜡烛"
                 let buttonImage = UIImage.composeButtonImage(from: object.thumbImage, alpha: 0.8, isice: isice)
                 let pressedButtonImage = UIImage.composeButtonImage(from: object.thumbImage, alpha: 0.8, isice: isice)
-                if (!self.isCandleShoundCount) {
-                    self.addObjectButton.setImage(buttonImage, for: [])
-                    self.addObjectButton.setImage(pressedButtonImage, for: [.highlighted])
-                }
 				self.isLoadingObject = false
                 self.planeStatus = 2
                 self.textManager.showMessage("放置成功")
@@ -1020,14 +955,14 @@ extension MainViewController {
         if (isDashBoardShow == true) {
             return
         }
-        dragonButton.isHidden = false
+        promtButton.isHidden = false
         buoyancyButton.isHidden = false
         sweepButton.isHidden = false
         
         
         buoyancyTouch.isHidden = false
         sweepTouch.isHidden = false
-        dragonTouch.isHidden = false
+        promtTouch.isHidden = false
         
     }
 
@@ -1036,22 +971,11 @@ extension MainViewController {
         isDashBoardShow = false
         buoyancyButton.isHidden = true
         sweepButton.isHidden = true
-        dragonButton.isHidden = true
-        dragonYellowButton.isHidden = true
-        dragonGreenButton.isHidden = true
-        dragonBlueButton.isHidden = true
-        dragonPurpleButton.isHidden = true
-        dragonRedButton.isHidden = true
+        promtButton.isHidden = true
     
         buoyancyTouch.isHidden = true
         sweepTouch.isHidden = true
-        dragonTouch.isHidden = true
-        
-        dragonYellowTouch.isHidden = true
-        dragonGreenTouch.isHidden = true
-        dragonBlueTouch.isHidden = true
-        dragonPurpleTouch.isHidden = true
-        dragonRedTouch.isHidden = true
+        promtTouch.isHidden = true
     }
 
     func showAdd() {
@@ -1064,52 +988,12 @@ extension MainViewController {
         findingText.isHidden = false
         findingText.text = "正在检测光滑平面"
     }
-    
-    func toggleColors() {
-        if (isColorShow == true) {
-            isColorShow = false
-            dragonYellowButton.isHidden = true
-            dragonGreenButton.isHidden = true
-            dragonBlueButton.isHidden = true
-            dragonPurpleButton.isHidden = true
-            dragonRedButton.isHidden = true
-            
-            dragonYellowTouch.isHidden = true
-            dragonGreenTouch.isHidden = true
-            dragonBlueTouch.isHidden = true
-            dragonPurpleTouch.isHidden = true
-            dragonRedTouch.isHidden = true
-            return
-        }
-        else{
-            isColorShow = true
-            dragonYellowButton.isHidden = false
-            dragonGreenButton.isHidden = false
-            dragonBlueButton.isHidden = false
-            dragonPurpleButton.isHidden = false
-            dragonRedButton.isHidden = false
-            
-            dragonYellowTouch.isHidden = false
-            dragonGreenTouch.isHidden = false
-            dragonBlueTouch.isHidden = false
-            dragonPurpleTouch.isHidden = false
-            dragonRedTouch.isHidden = false
-        }
-    }
-    
-
 
 	func resetVirtualObject() {
 		VirtualObjectsManager.shared.resetVirtualObjects()
         planeStatus = 0
         hideDashBoard()
         //hideAdd()
-
-        if (!isCandleShoundCount) {
-            addObjectButton.setImage(#imageLiteral(resourceName: "add"), for: [])
-            addObjectButton.setImage(#imageLiteral(resourceName: "addPressed"), for: [.highlighted])
-        }
-        
 	}
 
 	func updateVirtualObjectPosition(_ pos: SCNVector3, _ filterPosition: Bool) {
