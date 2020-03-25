@@ -64,37 +64,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
     }
 
-    
-    // 祈福执行打卡
-    func doCountHandler() {
-        let story = "你今天一共\n\n点燃了[" + String(candle_count) + "支]蜡烛\n\n为环境保护事业\n\n节约了[" + String(candle_count * 85) + "g]碳排放量"
-        let share = "我今天点燃了[" + String(candle_count) + "支]AR蜡烛节约了[" + String(candle_count * 85) + "g]碳排放量"
-        
-        let alert = UIAlertController(title: "", message: story, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("分享给好友", comment: "sure"), style: .`default`, handler: { _ in
-            Mixpanel.mainInstance().track(event: "share-carbon")
-            
-            let textToShare = share
-            
-            if let myWebsite = URL(string: "https://argoodies.com/arxcandle-share/") {//Enter link to your app here
-                let objectsToShare = [textToShare, myWebsite] as [Any]
-                let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-                
-                //Excluded Activities
-                activityVC.excludedActivityTypes = []
-                //
-                
-                self.present(activityVC, animated: true, completion: nil)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("完成", comment: "cancel"), style: .`default`, handler: { _ in
-        }))
-        self.present(alert, animated: true, completion: nil)
-        addObjectButton.setImage(#imageLiteral(resourceName: "add"), for: [])
-        addObjectButton.setImage(#imageLiteral(resourceName: "addPressed"), for: [.highlighted])
-        Mixpanel.mainInstance().track(event: "do-count")
-    }
-
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 

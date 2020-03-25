@@ -43,12 +43,14 @@ class VirtualObjectSelectionViewController: UIViewController, UITableViewDataSou
             return RedCandle()
 		case 2:
 			return IceCandle()
+        case 3:
+            return Flower()
 		default:
-			return IceCandle()
+			return ShortCandle()
 		}
 	}
 
-	static let COUNT_OBJECTS = 3
+	static let COUNT_OBJECTS = 4
     
 
 	// MARK: - UITableViewDelegate
