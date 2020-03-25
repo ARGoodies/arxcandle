@@ -16,7 +16,7 @@ struct CollisionCategory: OptionSet {
 }
 
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITextFieldDelegate {
 
 	var dragOnInfinitePlanesEnabled = true
 	var currentGesture: Gesture?
@@ -76,7 +76,7 @@ class MainViewController: UIViewController {
             
             let textToShare = share
             
-            if let myWebsite = URL(string: "https://virtual-west.github.io/arxcandle-share/") {//Enter link to your app here
+            if let myWebsite = URL(string: "https://argoodies.com/arxcandle-share/") {//Enter link to your app here
                 let objectsToShare = [textToShare, myWebsite] as [Any]
                 let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
                 
@@ -414,13 +414,13 @@ class MainViewController: UIViewController {
     @IBOutlet weak var promtButton: UIButton!
     @IBOutlet weak var promtTouch: UIButton!
     @IBAction func promtHandler(_ sender: Any) {
-        promtMessage()
+        promtAction()
     }
 
 
-    func promtMessage() {
+    func promtAction() {
         Mixpanel.mainInstance().track(event: "promt-message")
-        let story = "写点什么来寄托哀思吧"
+        let story = "写点什么吧"
         
         let alert = UIAlertController(title: "", message: story, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("填写", comment: "sure"), style: .`default`, handler: { _ in
@@ -431,13 +431,20 @@ class MainViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    let limitLength = 20
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= limitLength
+    }
+    
     func promtInput() {
-        let alert = UIAlertController(title: "寄托哀思", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "寄托哀思 | 为生者祈福", message: "", preferredStyle: .alert)
 
-        //2. Add the text field. You can configure it however you need.
-        alert.addTextField { (textField) in
+        alert.addTextField(configurationHandler: {(textField: UITextField!) -> Void in
             textField.text = self.textValue
-        }
+            textField.delegate = self // Set the delegate
+        })
 
         // 3. Grab the value from the text field, and print it when the user clicks OK.
         alert.addAction(UIAlertAction(title: "确定", style: .default, handler: { [weak alert] (_) in
@@ -450,6 +457,9 @@ class MainViewController: UIViewController {
     }
     
     func toastPromtMessage(message: String = "") {
+        if (message.count <= 0) {
+            return
+        }
         self.textManager.showMessage("AR祈福：\n\n" + message, autoHide: false)
     }
     

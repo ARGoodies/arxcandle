@@ -56,7 +56,7 @@ class SettingsViewController: UITableViewController {
             
             Mixpanel.mainInstance().track(event: "privacy")
             
-            UIApplication.shared.openURL(URL(string: "https://virtual-west.github.io/arxcandle-share/#privacy")!)
+            UIApplication.shared.openURL(URL(string: "https://argoodies.com/arxcandle-share/#privacy")!)
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
         }))
@@ -68,7 +68,7 @@ class SettingsViewController: UITableViewController {
         let alert = UIAlertController(title: "", message: "是否允许启动邮箱", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
             Mixpanel.mainInstance().track(event: "mail")
-            UIApplication.shared.openURL(URL(string: "mailto:meloalright@gmail.com?subject=Feedback")!)
+            UIApplication.shared.openURL(URL(string: "mailto:melo@argoodies.com?subject=Feedback")!)
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
         }))
@@ -93,7 +93,7 @@ class SettingsViewController: UITableViewController {
         
         Mixpanel.mainInstance().track(event: "share")
         
-        if let myWebsite = URL(string: "https://virtual-west.github.io/arxcandle-share/") {//Enter link to your app here
+        if let myWebsite = URL(string: "https://argoodies.com/arxcandle-share/") {//Enter link to your app here
             let objectsToShare = [textToShare, myWebsite] as [Any]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             
