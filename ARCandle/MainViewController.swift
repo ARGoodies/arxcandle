@@ -38,6 +38,8 @@ class MainViewController: UIViewController {
     
     var isDashBoardShow = false
     var isColorShow = false
+    
+    var textValue = "纪念怀念！我的亲人朋友"
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -354,7 +356,8 @@ class MainViewController: UIViewController {
         Mixpanel.mainInstance().track(event: "wind")
         
         VirtualObjectsManager.shared.extinguishVirtualObjects()
-
+        
+        self.textManager.showMessage("正在吹灭蜡烛")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             spinner.removeFromSuperview()
@@ -398,6 +401,7 @@ class MainViewController: UIViewController {
             , z: Z * force), asImpulse: true)
         self.sceneView.scene.rootNode.addChildNode(bulletsNode)
         
+        self.textManager.showMessage("正在清扫")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8, execute: {
             spinner.removeFromSuperview()
@@ -416,14 +420,37 @@ class MainViewController: UIViewController {
 
     func promtMessage() {
         Mixpanel.mainInstance().track(event: "promt-message")
-        let story = "寄托哀思"
+        let story = "写点什么来寄托哀思吧"
         
         let alert = UIAlertController(title: "", message: story, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("填写信息", comment: "sure"), style: .`default`, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("填写", comment: "sure"), style: .`default`, handler: { _ in
+            self.promtInput()
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func promtInput() {
+        let alert = UIAlertController(title: "寄托哀思", message: "", preferredStyle: .alert)
+
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.text = self.textValue
+        }
+
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "确定", style: .default, handler: { [weak alert] (_) in
+            self.textValue = (alert?.textFields![0].text)!
+            self.toastPromtMessage(message: self.textValue)
+        }))
+
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func toastPromtMessage(message: String = "") {
+        self.textManager.showMessage("AR祈福：\n\n" + message, autoHide: false)
     }
     
     
@@ -500,17 +527,6 @@ class MainViewController: UIViewController {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 // MARK: - ARKit / ARSCNView
