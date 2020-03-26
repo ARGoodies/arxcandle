@@ -4,28 +4,16 @@ import ARKit
 // - MARK: UIImage extensions
 
 extension UIImage {
-	func inverted() -> UIImage? {
-        guard let ciImage = CIImage(image: self) else {
-            return nil
-        }
-        return UIImage(ciImage: ciImage.applyingFilter("CIColorInvert", parameters: [String: Any]()))
-    }
-
-    static func composeButtonImage(from thumbImage: UIImage, alpha: CGFloat = 1.0, isice: Bool) -> UIImage {
+    static func composeButtonImage(from thumbImage: UIImage, alpha: CGFloat = 1.0) -> UIImage {
 		let maskImage = #imageLiteral(resourceName: "buttonring")
-		var thumbnailImage = thumbImage
-        if isice {
-            if let invertedImage = thumbImage.inverted() {
-                thumbnailImage = invertedImage
-            }
-        }
+		let thumbnailImage = thumbImage
 
 		// Compose a button image based on a white background and the inverted thumbnail image.
 		UIGraphicsBeginImageContextWithOptions(maskImage.size, false, 0.0)
 		let maskDrawRect = CGRect(origin: CGPoint.zero,
 		                          size: maskImage.size)
-		let thumbDrawRect = CGRect(origin: CGPoint((maskImage.size - thumbImage.size) / 2),
-		                           size: thumbImage.size)
+        let thumbDrawRect = CGRect(origin: CGPoint(maskImage.size / 6),
+                                   size: maskImage.size * 2 / 3)
 		maskImage.draw(in: maskDrawRect, blendMode: .normal, alpha: alpha)
 		thumbnailImage.draw(in: thumbDrawRect, blendMode: .normal, alpha: alpha)
 		let composedImage = UIGraphicsGetImageFromCurrentImageContext()

@@ -85,12 +85,7 @@ class VirtualObjectSelectionViewController: UIViewController, UITableViewDataSou
 
 		// Fill up the cell with data from the object.
 		let object = getObject(index: indexPath.row)
-		var thumbnailImage = object.thumbImage!
-        if object.title == "寒冰蜡烛" {
-            if let invertedImage = thumbnailImage.inverted() {
-                thumbnailImage = invertedImage
-            }
-        }
+        let thumbnailImage = object.thumbImage!
 		label.text = object.title
 		icon.image = thumbnailImage
 

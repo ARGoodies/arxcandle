@@ -1,6 +1,5 @@
 import UIKit
 import Mixpanel
-import StoreKit
 
 enum Setting: String {
     // Bool settings with SettingsViewController switches
@@ -39,7 +38,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet var rateButton: UIButton!
     @IBOutlet weak var shareTimelineButton: UIButton!
     @IBOutlet var watchSupportButton: UIButton!
-    
+    @IBOutlet weak var arGoodiesButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -49,7 +48,6 @@ class SettingsViewController: UITableViewController {
         super.viewWillAppear(animated)
         populateSettings()
     }
-
     
     @IBAction func linkIntoPrivacy(_ sender: UIButton) {
         let alert = UIAlertController(title: "", message: "是否允许浏览器打开链接", preferredStyle: .actionSheet)
@@ -77,8 +75,7 @@ class SettingsViewController: UITableViewController {
     }
 
     @IBAction func rateHandler(_ sender: Any) {
-        SKStoreReviewController.requestReview()
-        let alert = UIAlertController(title: "", message: "是否前往[App Store]", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "", message: "是否允许打开[App Store]", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
             
             Mixpanel.mainInstance().track(event: "rate")
@@ -119,6 +116,18 @@ class SettingsViewController: UITableViewController {
         
     }
     
+    @IBAction func ARGoodies(_ sender: Any) {
+        let alert = UIAlertController(title: "", message: "是否允许浏览器打开链接", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
+            
+            Mixpanel.mainInstance().track(event: "ar-goodies")
+            
+            UIApplication.shared.openURL(URL(string: "https://argoodies.com/")!)
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
 
 	private func populateSettings() {
 		let defaults = UserDefaults.standard

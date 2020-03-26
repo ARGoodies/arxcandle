@@ -57,15 +57,15 @@
                                 </connections>
                             </button>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="9e0-zv-RiN" userLabel="Message Panel">
-                                <rect key="frame" x="15" y="15" width="115.5" height="88"/>
+                                <rect key="frame" x="15" y="15" width="115" height="88"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="AVp-TR-4Nw">
-                                    <rect key="frame" x="0.0" y="0.0" width="115.5" height="88"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="115" height="88"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4B-nn-Jhq">
-                                            <rect key="frame" x="0.0" y="0.0" width="115.5" height="88"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="115" height="88"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CFm-yP-zdd">
-                                                <rect key="frame" x="0.0" y="0.0" width="115.5" height="88"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="115" height="88"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-ZJ-can">
@@ -234,11 +234,11 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ej0-Lm-asn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.87732924111766519" green="0.87732924111766519" blue="0.87732924111766519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前版本: 2.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tQh-dm-sJ2">
-                            <rect key="frame" x="0.0" y="397.5" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="457.5" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -378,6 +378,31 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="RVU-bW-ezp">
+                                        <rect key="frame" x="0.0" y="379.5" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RVU-bW-ezp" id="3bY-L9-CWs">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCx-IK-Aoe" userLabel="ARGoodies">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                                    <state key="normal" title="AR Goodies">
+                                                        <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="ARGoodies:" destination="DF8-Gu-Tf1" eventType="touchDown" id="lDR-g7-Bfh"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="iCx-IK-Aoe" firstAttribute="leading" secondItem="3bY-L9-CWs" secondAttribute="leading" id="JGR-zX-IN8"/>
+                                                <constraint firstItem="iCx-IK-Aoe" firstAttribute="top" secondItem="3bY-L9-CWs" secondAttribute="top" id="WJK-Tb-RGZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="iCx-IK-Aoe" secondAttribute="trailing" id="ZKF-kP-tpn"/>
+                                                <constraint firstAttribute="bottom" secondItem="iCx-IK-Aoe" secondAttribute="bottom" id="lYs-l6-mIA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -387,6 +412,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="arGoodiesButton" destination="iCx-IK-Aoe" id="jpx-KD-hwv"/>
                         <outlet property="mailButton" destination="arC-dN-zoQ" id="VCZ-bf-Evo"/>
                         <outlet property="privacyButton" destination="Y48-Oh-ccn" id="EQn-SM-9d6"/>
                         <outlet property="rateButton" destination="Y3h-wx-rc5" id="ZiL-hG-vYP"/>

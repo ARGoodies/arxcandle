@@ -57,7 +57,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         sceneView.scene.physicsWorld.contactDelegate = self as? SCNPhysicsContactDelegate
         sceneView.scene.physicsWorld.gravity = SCNVector3(x: 0.0, y: 0.0, z: 0.0)
-        
     }
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -113,7 +112,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
  
 	@IBOutlet weak var addObjectButton: UIButton!
     
-
 	@IBAction func chooseObject(_ button: UIButton) {
 		// Abort if we are about to load another object to avoid concurrent modifications of the scene.
 		if isLoadingObject { return }
@@ -143,20 +141,21 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
     func addPlane(node: SCNNode, anchor: ARPlaneAnchor) {
 
-		let pos = SCNVector3.positionFromTransform(anchor.transform)
+        _ = SCNVector3.positionFromTransform(anchor.transform)
 
 		let plane = Plane(anchor, showDebugVisuals)
 
 		planes[anchor] = plane
 		node.addChildNode(plane)
+        
+        let addButtonImage = UIImage.composeButtonImage(from: UIImage(imageLiteralResourceName: "add"), alpha: 0.8)
+        self.addObjectButton.setImage(addButtonImage, for: [])
 
 		textManager.cancelScheduledMessage(forType: .planeEstimation)
         Mixpanel.mainInstance().track(event: "add-plane")
 		if !VirtualObjectsManager.shared.isAVirtualObjectPlaced() {
             planeStatus = 1;
 		}
-        
-        
 	}
 
 	func restartPlaneDetection() {
@@ -303,7 +302,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     func removeNodeWithAnimation(_ node: SCNNode, explosion: Bool) {
         print("remove!!")
-    
     }
 
     @IBOutlet var buoyancyButton: UIButton!
@@ -331,8 +329,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
     }
 
-    
-    
     
     @IBOutlet weak var findingText: UILabel!
     
@@ -385,7 +381,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
     func promtAction() {
         Mixpanel.mainInstance().track(event: "promt-message")
-        let story = "写点什么吧"
+        let story = "填写祈福语"
         
         let alert = UIAlertController(title: "", message: story, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("填写", comment: "sure"), style: .`default`, handler: { _ in
@@ -394,20 +390,22 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)
+        Mixpanel.mainInstance().track(event: "promt-action")
     }
     
     let limitLength = 20
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
-        let newLength = text.characters.count + string.characters.count - range.length
+        let newLength = text.count + string.characters.count - range.length
         return newLength <= limitLength
     }
     
     func promtInput() {
-        let alert = UIAlertController(title: "祈福", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "祈福语", message: "", preferredStyle: .alert)
 
         alert.addTextField(configurationHandler: {(textField: UITextField!) -> Void in
             textField.text = self.textValue
+            textField.font = UIFont.systemFont(ofSize: 12)
             textField.delegate = self // Set the delegate
         })
 
@@ -419,13 +417,15 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
+        Mixpanel.mainInstance().track(event: "promt-input")
     }
     
     func toastPromtMessage(message: String = "") {
         if (message.count <= 0) {
             return
         }
-        self.textManager.showMessage("AR祈福：\n\n" + message, autoHide: false)
+        self.textManager.showMessage("祈福：\n\n" + message, autoHide: false)
+        Mixpanel.mainInstance().track(event: "promt-toast")
     }
     
     
@@ -446,9 +446,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		let navigationController = UINavigationController(rootViewController: settingsViewController)
 		navigationController.modalPresentationStyle = .pageSheet
 		navigationController.popoverPresentationController?.delegate = self
-		/*navigationController.preferredContentSize = CGSize(width: sceneView.bounds.size.width - 20,
-		                                                   height: sceneView.bounds.size.height - 180)
-         */
+
 		self.present(navigationController, animated: true, completion: nil)
 
 		navigationController.popoverPresentationController?.sourceView = settingsButton
@@ -465,7 +463,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         }
         return (SCNVector3(0, 0, -1), SCNVector3(0, 0, -0.2))
     }
-    
     
     
     @objc
@@ -581,24 +578,6 @@ extension MainViewController {
             let sessionErrorMsg = "该设备不支持ARKit"
             Mixpanel.mainInstance().track(event: "no-arkit")
             displayErrorMessage(title: "", message: sessionErrorMsg, allowRestart: false)
-        }
-    }
-}
-
-extension utsname {
-    func hasAtLeastA9() -> Bool { // checks if device has at least A9 chip for configuration
-        var systemInfo = self
-        uname(&systemInfo)
-        let str = withUnsafePointer(to: &systemInfo.machine.0) { ptr in
-            return String(cString: ptr)
-        }
-        switch str {
-        case "iPhone8,1", "iPhone8,2", "iPhone8,4", "iPhone9,1", "iPhone9,2", "iPhone9,3", "iPhone9,4", "iPhone10,1", "iPhone10,4", "iPhone10,2", "iPhone10,5", "iPhone10,3", "iPhone10,6": // iphone with at least A9 processor
-            return true
-        case "iPad6,7", "iPad6,8", "iPad6,3", "iPad6,4", "iPad6,11", "iPad6,12": // ipad with at least A9 processor
-            return true
-        default:
-            return false
         }
     }
 }
@@ -726,10 +705,8 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
                 spinner.removeFromSuperview()
                 Mixpanel.mainInstance().track(event: object.title)
 
-				// Update the icon of the add object button
-                let isice = object.title == "寒冰蜡烛"
-                let buttonImage = UIImage.composeButtonImage(from: object.thumbImage, alpha: 0.8, isice: isice)
-                let pressedButtonImage = UIImage.composeButtonImage(from: object.thumbImage, alpha: 0.8, isice: isice)
+                let buttonImage = UIImage.composeButtonImage(from: object.thumbImage, alpha: 0.8)
+                self.addObjectButton.setImage(buttonImage, for: [])
 				self.isLoadingObject = false
                 self.planeStatus = 2
 			}
@@ -788,7 +765,6 @@ extension MainViewController :ARSCNViewDelegate {
 
 // MARK: Virtual Object Manipulation
 extension MainViewController {
-    
     
 	func displayVirtualObjectTransform() {
 		guard let object = VirtualObjectsManager.shared.getVirtualObjectSelected(),
@@ -910,7 +886,6 @@ extension MainViewController {
         promtButton.isHidden = false
         buoyancyButton.isHidden = false
         sweepButton.isHidden = false
-        
         
         buoyancyTouch.isHidden = false
         sweepTouch.isHidden = false

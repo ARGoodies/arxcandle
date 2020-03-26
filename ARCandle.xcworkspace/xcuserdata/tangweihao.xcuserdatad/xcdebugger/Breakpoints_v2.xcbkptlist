@@ -14,8 +14,8 @@
             filePath = "ARCandle/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
             landmarkName = "promtInput()"
             landmarkType = "7">
          </BreakpointContent>
