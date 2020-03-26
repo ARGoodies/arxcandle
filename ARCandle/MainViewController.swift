@@ -3,11 +3,7 @@ import Foundation
 import SceneKit
 import UIKit
 import Photos
-
-
 import Mixpanel
-
-
 
 struct CollisionCategory: OptionSet {
     let rawValue: Int
@@ -408,7 +404,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
     
     func promtInput() {
-        let alert = UIAlertController(title: "寄托哀思 | 为生者祈福", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "祈福", message: "", preferredStyle: .alert)
 
         alert.addTextField(configurationHandler: {(textField: UITextField!) -> Void in
             textField.text = self.textValue
@@ -534,7 +530,6 @@ extension MainViewController {
 			}
 		case .normal:
 			textManager.cancelScheduledMessage(forType: .trackingStateEscalation)
-            //findingText.text = "请前后拉伸镜头直到选择框变亮"
             showAdd()
 			if use3DOFTrackingFallback && trackingFallbackTimer != nil {
 				trackingFallbackTimer!.invalidate()
@@ -609,17 +604,6 @@ extension utsname {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 // MARK: Gesture Recognized
 extension MainViewController {
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -662,12 +646,6 @@ extension MainViewController {
 }
 
 
-
-
-
-
-
-
 // MARK: - UIPopoverPresentationControllerDelegate
 extension MainViewController: UIPopoverPresentationControllerDelegate {
 	func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -678,12 +656,6 @@ extension MainViewController: UIPopoverPresentationControllerDelegate {
 		updateSettings()
 	}
 }
-
-
-
-
-
-
 
 
 // MARK: - VirtualObjectSelectionViewControllerDelegate
@@ -732,6 +704,9 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
 					self.setNewVirtualObjectPosition(SCNVector3Zero)
 				}
                 
+                self.textManager.showMessage("放置成功")
+                self.showDashBoard()
+                
                 var fire = ""
                 if object.title == "白蜡烛" {
                     fire = "red-fire"
@@ -742,14 +717,13 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
                 else if object.title == "寒冰蜡烛" {
                     fire = "blue-fire"
                 }
-
-                let particleSystem = SCNParticleSystem(named: fire, inDirectory: nil)
-                //let systemNode = SCNNode()
-
-                object.addParticleSystem(particleSystem!)
-
-				spinner.removeFromSuperview()
-
+                
+                if (fire.count > 0) {
+                    let particleSystem = SCNParticleSystem(named: fire, inDirectory: nil)
+                    object.addParticleSystem(particleSystem!)
+                }
+                
+                spinner.removeFromSuperview()
                 Mixpanel.mainInstance().track(event: object.title)
 
 				// Update the icon of the add object button
@@ -758,20 +732,10 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
                 let pressedButtonImage = UIImage.composeButtonImage(from: object.thumbImage, alpha: 0.8, isice: isice)
 				self.isLoadingObject = false
                 self.planeStatus = 2
-                self.textManager.showMessage("放置成功")
-                self.showDashBoard()
 			}
 		}
 	}
 }
-
-
-
-
-
-
-
-
 
 
 // MARK: - ARSCNViewDelegate
@@ -820,13 +784,6 @@ extension MainViewController :ARSCNViewDelegate {
 		}
 	}
 }
-
-
-
-
-
-
-
 
 
 // MARK: Virtual Object Manipulation
@@ -988,7 +945,6 @@ extension MainViewController {
 		VirtualObjectsManager.shared.resetVirtualObjects()
         planeStatus = 0
         hideDashBoard()
-        //hideAdd()
 	}
 
 	func updateVirtualObjectPosition(_ pos: SCNVector3, _ filterPosition: Bool) {

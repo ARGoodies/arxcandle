@@ -1,5 +1,6 @@
 import UIKit
 import Mixpanel
+import StoreKit
 
 enum Setting: String {
     // Bool settings with SettingsViewController switches
@@ -76,12 +77,13 @@ class SettingsViewController: UITableViewController {
     }
 
     @IBAction func rateHandler(_ sender: Any) {
-        let alert = UIAlertController(title: "", message: "是否允许启动[App Store]", preferredStyle: .actionSheet)
+        SKStoreReviewController.requestReview()
+        let alert = UIAlertController(title: "", message: "是否前往[App Store]", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
             
             Mixpanel.mainInstance().track(event: "rate")
             
-            UIApplication.shared.openURL(URL(string: "https://itunes.apple.com/cn/app/arxcandle/id1346647915?mt=8")!)
+            UIApplication.shared.openURL(URL(string: "https://itunes.apple.com/app/arxcandle/id1346647915?mt=8")!)
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
         }))
@@ -120,7 +122,5 @@ class SettingsViewController: UITableViewController {
 
 	private func populateSettings() {
 		let defaults = UserDefaults.standard
-
-
 	}
 }

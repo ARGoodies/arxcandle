@@ -1,7 +1,7 @@
 import Foundation
 import SceneKit
 
-class Flower: VirtualObject, ReactsToScale {
+class Flower: VirtualObject {
 
     override init() {
         super.init(modelName: "flower_tulip", fileExtension: "scn", thumbImageFilename: "candle", title: "花")
@@ -11,6 +11,4 @@ class Flower: VirtualObject, ReactsToScale {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func reactToScale() {
-    }
 }
