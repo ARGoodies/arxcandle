@@ -392,24 +392,24 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             self.toastPromtMessage(message: "风雨过后，必见彩虹。")
             Mixpanel.mainInstance().track(event: "promt-action-1")
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("你若安好，便是晴天。", comment: "string_2"), style: .`default`, handler: { _ in
-            self.toastPromtMessage(message: "你若安好，便是晴天。")
+        alert.addAction(UIAlertAction(title: NSLocalizedString("愿我们永远年轻，永远热泪盈眶。", comment: "string_2"), style: .`default`, handler: { _ in
+            self.toastPromtMessage(message: "愿我们永远年轻，永远热泪盈眶。")
             Mixpanel.mainInstance().track(event: "promt-action-2")
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("生者醉，逝者寐，心愿付纸灰。", comment: "string_3"), style: .`default`, handler: { _ in
-            self.toastPromtMessage(message: "生者醉，逝者寐，心愿付纸灰。")
+        alert.addAction(UIAlertAction(title: NSLocalizedString("你若安好，便是晴天。", comment: "string_3"), style: .`default`, handler: { _ in
+            self.toastPromtMessage(message: "你若安好，便是晴天。")
             Mixpanel.mainInstance().track(event: "promt-action-3")
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("自定义", comment: "diy"), style: .`default`, handler: { _ in
             self.promtInput()
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`cancel`, handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)
         Mixpanel.mainInstance().track(event: "promt-action")
     }
     
-    let limitLength = 20
+    let limitLength = 15
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
         let newLength = text.count + string.characters.count - range.length

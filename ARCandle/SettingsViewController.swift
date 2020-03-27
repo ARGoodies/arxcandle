@@ -57,7 +57,7 @@ class SettingsViewController: UITableViewController {
             
             UIApplication.shared.openURL(URL(string: "https://argoodies.com/arxcandle-share/#privacy")!)
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`cancel`, handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -69,7 +69,7 @@ class SettingsViewController: UITableViewController {
             Mixpanel.mainInstance().track(event: "mail")
             UIApplication.shared.openURL(URL(string: "mailto:melo@argoodies.com?subject=Feedback")!)
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`cancel`, handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -82,7 +82,7 @@ class SettingsViewController: UITableViewController {
             
             UIApplication.shared.openURL(URL(string: "https://itunes.apple.com/app/arxcandle/id1346647915?mt=8")!)
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`cancel`, handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -124,7 +124,7 @@ class SettingsViewController: UITableViewController {
             
             UIApplication.shared.openURL(URL(string: "https://argoodies.com/")!)
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`cancel`, handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)
     }
