@@ -30,9 +30,10 @@ class Gesture {
 
 	static func startGestureFromTouches(_ touches: Set<UITouch>, _ sceneView: ARSCNView,
 	                                    _ virtualObject: VirtualObject) -> Gesture? {
-		if touches.count == 1 {
+		/* // melo canceld it
+        if touches.count == 1 {
 			return SingleFingerGesture(touches, sceneView, virtualObject)
-		} else if touches.count == 2 {
+		} else **/if touches.count == 2 {
 			return TwoFingerGesture(touches, sceneView, virtualObject)
 		} else {
 			return nil
@@ -40,9 +41,10 @@ class Gesture {
 	}
 
 	func refreshCurrentGesture() {
-		if let singleFingerGesture = self as? SingleFingerGesture {
+        /* // melo candeled it
+         if let singleFingerGesture = self as? SingleFingerGesture {
 			singleFingerGesture.updateGesture()
-		} else if let twoFingerGesture = self as? TwoFingerGesture {
+		} else  **/if let twoFingerGesture = self as? TwoFingerGesture {
 			twoFingerGesture.updateGesture()
 		}
 	}
@@ -60,6 +62,7 @@ class Gesture {
 			currentTouches.subtract(touches)
 		}
 
+        /* // melo canceled it
 		if let singleFingerGesture = self as? SingleFingerGesture {
 
 			if currentTouches.count == 1 {
@@ -73,7 +76,7 @@ class Gesture {
 				singleFingerGesture.refreshTimer = nil
 				return Gesture.startGestureFromTouches(currentTouches, sceneView, virtualObject)
 			}
-		} else if let twoFingerGesture = self as? TwoFingerGesture {
+		} else **/if let twoFingerGesture = self as? TwoFingerGesture {
 
 			if currentTouches.count == 2 {
 				// Update this gesture.
@@ -135,7 +138,6 @@ class SingleFingerGesture: Gesture {
 			let distanceFromStartLocation = initialLocationToCurrentLocation.length()
 			if distanceFromStartLocation >= translationThreshold {
 				translationThresholdPassed = true
-
 				let currentObjectLocation = CGPoint(sceneView.projectPoint(virtualObject.position))
 				dragOffset = latestTouchLocation - currentObjectLocation
 			}
@@ -145,7 +147,6 @@ class SingleFingerGesture: Gesture {
 		if translationThresholdPassed && firstTouchWasOnObject {
 
 			let offsetPos = latestTouchLocation - dragOffset
-
 			virtualObject.translateBasedOnScreenPos(offsetPos, instantly:false, infinitePlane:true)
 			hasMovedObject = true
 		}
@@ -359,7 +360,7 @@ class TwoFingerGesture: Gesture {
 
         if allowTranslation {
             // 1. Translation using the midpoint between the two fingers.
-            updateTranslation(midpoint: loc1.midpoint(loc2))
+            // updateTranslation(midpoint: loc1.midpoint(loc2)) // melo canceled it
         }
 
 		let spanBetweenTouches = loc1 - loc2

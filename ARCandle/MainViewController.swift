@@ -35,7 +35,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     var isDashBoardShow = false
     var isColorShow = false
     
-    var textValue = "纪念怀念！我的亲人朋友"
+    var textValue = ""
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -381,10 +381,26 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
     func promtAction() {
         Mixpanel.mainInstance().track(event: "promt-message")
-        let story = "填写祈福语"
+        let story = "一句话祈福"
         
         let alert = UIAlertController(title: "", message: story, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("填写", comment: "sure"), style: .`default`, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("愿逝者安息，生者前行。", comment: "string_0"), style: .`default`, handler: { _ in
+            self.toastPromtMessage(message: "愿逝者安息，生者前行。")
+            Mixpanel.mainInstance().track(event: "promt-action-0")
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("风雨过后，必见彩虹。", comment: "string_1"), style: .`default`, handler: { _ in
+            self.toastPromtMessage(message: "风雨过后，必见彩虹。")
+            Mixpanel.mainInstance().track(event: "promt-action-1")
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("你若安好，便是晴天。", comment: "string_2"), style: .`default`, handler: { _ in
+            self.toastPromtMessage(message: "你若安好，便是晴天。")
+            Mixpanel.mainInstance().track(event: "promt-action-2")
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("生者醉，逝者寐，心愿付纸灰。", comment: "string_3"), style: .`default`, handler: { _ in
+            self.toastPromtMessage(message: "生者醉，逝者寐，心愿付纸灰。")
+            Mixpanel.mainInstance().track(event: "promt-action-3")
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("自定义", comment: "diy"), style: .`default`, handler: { _ in
             self.promtInput()
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`default`, handler: { _ in
@@ -401,7 +417,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
     
     func promtInput() {
-        let alert = UIAlertController(title: "祈福语", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "一句话祈福", message: "", preferredStyle: .alert)
 
         alert.addTextField(configurationHandler: {(textField: UITextField!) -> Void in
             textField.text = self.textValue
@@ -424,7 +440,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         if (message.count <= 0) {
             return
         }
-        self.textManager.showMessage("祈福：\n\n" + message, autoHide: false)
+        self.textManager.showMessage("AR祈福：\n\n" + message, autoHide: false)
         Mixpanel.mainInstance().track(event: "promt-toast")
     }
     
