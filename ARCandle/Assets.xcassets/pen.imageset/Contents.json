@@ -1,17 +1,17 @@
 {
     "images": [
         {
-            "filename": "outline_rate_review_white_36pt_1x.png",
+            "filename": "baseline_face_white_48pt_1x.png",
             "idiom": "universal",
             "scale": "1x"
         },
         {
-            "filename": "outline_rate_review_white_36pt_2x.png",
+            "filename": "baseline_face_white_48pt_2x.png",
             "idiom": "universal",
             "scale": "2x"
         },
         {
-            "filename": "outline_rate_review_white_36pt_3x.png",
+            "filename": "baseline_face_white_48pt_3x.png",
             "idiom": "universal",
             "scale": "3x"
         }

@@ -4,13 +4,16 @@ import SceneKit
 import UIKit
 import Photos
 import Mixpanel
+import AudioToolbox
+
+let sysPeekId:SystemSoundID = 1519
+let sysPopId:SystemSoundID = 1520
 
 struct CollisionCategory: OptionSet {
     let rawValue: Int
     static let bullets  = CollisionCategory(rawValue: 1 << 0) // 00...01
     static let ship = CollisionCategory(rawValue: 1 << 1) // 00..10
 }
-
 
 class MainViewController: UIViewController, UITextFieldDelegate {
 
@@ -307,6 +310,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var buoyancyButton: UIButton!
     @IBOutlet var buoyancyTouch: UIButton!
     @IBAction func buoyanceHandler(_ sender: Any) {
+
+        AudioServicesPlaySystemSound(sysPeekId);
         
         let spinner = UIActivityIndicatorView()
         spinner.center = buoyancyButton.center
@@ -336,6 +341,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var sweepButton: UIButton!
     @IBOutlet var sweepTouch: UIButton!
     @IBAction func sweepHandler(_ sender: Any) {
+
+        AudioServicesPlaySystemSound(sysPopId);
         
         let spinner = UIActivityIndicatorView()
         spinner.center = sweepButton.center
@@ -440,6 +447,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         if (message.count <= 0) {
             return
         }
+        AudioServicesPlaySystemSound(sysPeekId);
         self.textManager.showMessage("AR祈福：\n\n" + message, autoHide: false)
         Mixpanel.mainInstance().track(event: "promt-toast")
     }
@@ -700,6 +708,7 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
 				}
                 
                 self.textManager.showMessage("放置成功")
+                AudioServicesPlaySystemSound(sysPeekId);
                 self.showDashBoard()
                 
                 var fire = ""
