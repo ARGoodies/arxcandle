@@ -7,7 +7,6 @@ import Mixpanel
 import AudioToolbox
 
 let sysPeekId:SystemSoundID = 1519
-let sysPopId:SystemSoundID = 1520
 
 struct CollisionCategory: OptionSet {
     let rawValue: Int
@@ -55,8 +54,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		updateSettings()
 		resetVirtualObject()
         hideAdd()
-        
-        textManager.showMessage("请寻找光滑平面")
         
         sceneView.scene.physicsWorld.contactDelegate = self as? SCNPhysicsContactDelegate
         sceneView.scene.physicsWorld.gravity = SCNVector3(x: 0.0, y: 0.0, z: 0.0)
@@ -121,7 +118,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
 		textManager.cancelScheduledMessage(forType: .contentPlacement)
 
-		let rowHeight = 45
+		let rowHeight = 49
 		let popoverSize = CGSize(width: 250, height: rowHeight * VirtualObjectSelectionViewController.COUNT_OBJECTS)
 
 		let objectViewController = VirtualObjectSelectionViewController(size: popoverSize)
@@ -143,6 +140,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 	var planes = [ARPlaneAnchor: Plane]()
 
     func addPlane(node: SCNNode, anchor: ARPlaneAnchor) {
+
+        showAdd();
 
         _ = SCNVector3.positionFromTransform(anchor.transform)
 
@@ -308,7 +307,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBOutlet var buoyancyButton: UIButton!
-    @IBOutlet var buoyancyTouch: UIButton!
+    @IBOutlet var buoyancyButtonHitArea: UIButton!
     @IBAction func buoyanceHandler(_ sender: Any) {
 
         AudioServicesPlaySystemSound(sysPeekId);
@@ -331,7 +330,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             spinner.removeFromSuperview()
             self.buoyancyButton.setImage(UIImage(named: "buo"), for: [])
         })
-
     }
 
     
@@ -339,10 +337,10 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBOutlet var sweepButton: UIButton!
-    @IBOutlet var sweepTouch: UIButton!
+    @IBOutlet var sweepButtonHitArea: UIButton!
     @IBAction func sweepHandler(_ sender: Any) {
 
-        AudioServicesPlaySystemSound(sysPopId);
+        AudioServicesPlaySystemSound(sysPeekId);
         
         let spinner = UIActivityIndicatorView()
         spinner.center = sweepButton.center
@@ -380,9 +378,12 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBOutlet weak var promtButton: UIButton!
-    @IBOutlet weak var promtTouch: UIButton!
     @IBAction func promtHandler(_ sender: Any) {
-        promtAction()
+
+        self.promtAction()
+        Mixpanel.mainInstance().track(event: "promt")
+        self.promtButton.setImage(UIImage(named: "face"), for: [])
+
     }
 
 
@@ -539,8 +540,9 @@ extension MainViewController {
 
 		switch camera.trackingState {
 		case .notAvailable:
-            print("not")
+            print("notAvailable")
 		case .limited:
+            self.limitedCallBack()
             self.resetVirtualObject()//每次回到limit都reset一下
 			if use3DOFTrackingFallback {
 				trackingFallbackTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false, block: { _ in
@@ -551,7 +553,6 @@ extension MainViewController {
 			}
 		case .normal:
 			textManager.cancelScheduledMessage(forType: .trackingStateEscalation)
-            showAdd()
 			if use3DOFTrackingFallback && trackingFallbackTimer != nil {
 				trackingFallbackTimer!.invalidate()
 				trackingFallbackTimer = nil
@@ -633,7 +634,6 @@ extension MainViewController {
 
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		if !VirtualObjectsManager.shared.isAVirtualObjectPlaced() {
-			//chooseObject(addObjectButton)
 			return
 		}
 
@@ -718,7 +718,7 @@ extension MainViewController :VirtualObjectSelectionViewControllerDelegate {
                 else if object.title == "红蜡烛" {
                     fire = "red-fire"
                 }
-                else if object.title == "寒冰蜡烛" {
+                else if object.title == "冰蜡烛" {
                     fire = "blue-fire"
                 }
                 
@@ -910,31 +910,39 @@ extension MainViewController {
         }
         promtButton.isHidden = false
         buoyancyButton.isHidden = false
+        buoyancyButtonHitArea.isHidden = false
         sweepButton.isHidden = false
-        
-        buoyancyTouch.isHidden = false
-        sweepTouch.isHidden = false
-        promtTouch.isHidden = false
-        
+        sweepButtonHitArea.isHidden = false
     }
 
     
     func hideDashBoard() {
         isDashBoardShow = false
-        buoyancyButton.isHidden = true
-        sweepButton.isHidden = true
         promtButton.isHidden = true
-    
-        buoyancyTouch.isHidden = true
-        sweepTouch.isHidden = true
-        promtTouch.isHidden = true
+        buoyancyButton.isHidden = true
+        buoyancyButtonHitArea.isHidden = true
+        sweepButton.isHidden = true
+        sweepButtonHitArea.isHidden = true
     }
 
     func showAdd() {
-        addObjectButton.isHidden = false
-        findingText.isHidden = true
+        if (addObjectButton.isHidden == true) {
+            addObjectButton.isHidden = false
+        }
+        if (findingText.isHidden == false) {
+            findingText.isHidden = true
+        }
     }
     
+    func limitedCallBack() {
+        if (findingText.isHidden == false) {
+            findingText.text = "请左右移动您的手机"
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
+            self.showAdd()
+        })
+    }
+
     func hideAdd() {
         addObjectButton.isHidden = true
         findingText.isHidden = false

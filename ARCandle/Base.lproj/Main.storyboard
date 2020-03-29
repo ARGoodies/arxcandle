@@ -40,7 +40,7 @@
                                 </state>
                                 <state key="highlighted" image="settingsPressed"/>
                                 <connections>
-                                    <action selector="showSettings:" destination="BV1-FR-VrT" eventType="touchUpInside" id="tO1-pq-1rM"/>
+                                    <action selector="showSettings:" destination="BV1-FR-VrT" eventType="touchUpInside" id="69j-ho-XW2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcf-ic-uGo" userLabel="Add Object Button">
@@ -117,102 +117,84 @@
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfY-ab-fha">
-                                <rect key="frame" x="10" y="547" width="48" height="48"/>
+                                <rect key="frame" x="0.0" y="531" width="68" height="68"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="gbd-2H-9aQ"/>
-                                    <constraint firstAttribute="height" constant="48" id="nWJ-Gs-wWi"/>
+                                    <constraint firstAttribute="width" constant="68" id="gbd-2H-9aQ"/>
+                                    <constraint firstAttribute="height" constant="68" id="nWJ-Gs-wWi"/>
                                 </constraints>
                                 <state key="normal" image="buo"/>
-                                <connections>
-                                    <action selector="buoyanceHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="hzz-ex-NoJ"/>
-                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDg-u9-bOx" userLabel="buo-touch">
-                                <rect key="frame" x="0.0" y="539" width="64" height="64"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7U0-cU-I6g" userLabel="Buoyancy Button Hit Area">
+                                <rect key="frame" x="0.0" y="531" width="68" height="68"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="bR2-T6-p8F"/>
-                                    <constraint firstAttribute="height" constant="64" id="fup-L5-had"/>
+                                    <constraint firstAttribute="width" constant="68" id="4Mh-Ef-ZMg"/>
+                                    <constraint firstAttribute="height" constant="68" id="dBO-Cd-6ZJ"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="buoyanceHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="GRV-jU-Qjw"/>
+                                    <action selector="buoyanceHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="iWn-Yx-7id"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qs6-cE-d5q">
-                                <rect key="frame" x="10" y="609" width="48" height="48"/>
+                                <rect key="frame" x="0.0" y="599" width="68" height="68"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="4IG-8y-cxR"/>
-                                    <constraint firstAttribute="width" constant="48" id="gNI-R2-Zwh"/>
+                                    <constraint firstAttribute="height" constant="68" id="4IG-8y-cxR"/>
+                                    <constraint firstAttribute="width" constant="68" id="gNI-R2-Zwh"/>
                                 </constraints>
                                 <state key="normal" image="sweep"/>
-                                <connections>
-                                    <action selector="sweepHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="1JK-Nq-4Kr"/>
-                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXv-xc-4D6" userLabel="sweep-touch">
-                                <rect key="frame" x="0.0" y="603" width="64" height="64"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcV-88-5RX" userLabel="Sweep Button Hit Area">
+                                <rect key="frame" x="0.0" y="599" width="68" height="68"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="r5x-JE-we5"/>
-                                    <constraint firstAttribute="width" constant="64" id="yfg-tf-sPe"/>
+                                    <constraint firstAttribute="height" constant="68" id="ArQ-ff-Xwl"/>
+                                    <constraint firstAttribute="width" constant="68" id="xP0-pn-0ar"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="sweepHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="G62-41-cQl"/>
+                                    <action selector="sweepHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="HDo-y1-IgD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6W-wK-bDp" userLabel="Promt Button">
-                                <rect key="frame" x="317" y="609" width="48" height="48"/>
+                                <rect key="frame" x="307" y="599" width="68" height="68"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="2SR-xJ-xg1"/>
-                                    <constraint firstAttribute="height" constant="48" id="IIO-nj-qAS"/>
+                                    <constraint firstAttribute="width" constant="68" id="2SR-xJ-xg1"/>
+                                    <constraint firstAttribute="height" constant="68" id="IIO-nj-qAS"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="pen"/>
+                                <state key="normal" image="face"/>
                                 <connections>
-                                    <action selector="promtHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="sB7-f8-PL8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRe-C7-8Ox" userLabel="promt-touch">
-                                <rect key="frame" x="311" y="603" width="64" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="CmM-aw-zub"/>
-                                    <constraint firstAttribute="width" constant="64" id="UlI-Vw-c4y"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="promtHandler:" destination="BV1-FR-VrT" eventType="touchDown" id="zoK-5R-a1j"/>
+                                    <action selector="promtHandler:" destination="BV1-FR-VrT" eventType="touchUpInside" id="wje-d6-nmu"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FindingText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGb-u7-KJb">
-                                <rect key="frame" x="152.5" y="325.5" width="70" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <rect key="frame" x="146" y="324" width="83.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="uDg-u9-bOx" firstAttribute="leading" secondItem="E6c-py-dvH" secondAttribute="leading" id="6cE-9V-a6B"/>
+                            <constraint firstItem="7U0-cU-I6g" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="51d-3V-obL"/>
                             <constraint firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" id="6h6-BI-mhL"/>
                             <constraint firstItem="E6c-py-dvH" firstAttribute="top" secondItem="RLh-bf-1c3" secondAttribute="top" id="7gH-DS-Crg"/>
                             <constraint firstItem="E6c-py-dvH" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="8nh-ZQ-AuM"/>
+                            <constraint firstItem="y6W-wK-bDp" firstAttribute="trailing" secondItem="GBj-4O-Whc" secondAttribute="trailing" id="EGs-rq-wwq"/>
                             <constraint firstItem="9e0-zv-RiN" firstAttribute="top" secondItem="E6c-py-dvH" secondAttribute="top" constant="15" id="FTS-AH-WBr"/>
-                            <constraint firstAttribute="trailing" secondItem="y6W-wK-bDp" secondAttribute="trailing" constant="10" id="Gls-kw-41n"/>
-                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="Qs6-cE-d5q" secondAttribute="bottom" constant="10" id="L7t-pc-kdj"/>
-                            <constraint firstItem="pXv-xc-4D6" firstAttribute="leading" secondItem="E6c-py-dvH" secondAttribute="leading" id="Ost-Dh-8Z7"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="GcV-88-5RX" secondAttribute="bottom" id="FgT-mB-gp4"/>
+                            <constraint firstItem="GcV-88-5RX" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="IbA-3J-yoM"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="Qs6-cE-d5q" secondAttribute="bottom" id="L7t-pc-kdj"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="nfY-ab-fha" secondAttribute="bottom" constant="68" id="NtM-sc-Okc"/>
                             <constraint firstItem="QGb-u7-KJb" firstAttribute="centerX" secondItem="RLh-bf-1c3" secondAttribute="centerX" id="QCR-e9-yeQ"/>
-                            <constraint firstItem="pXv-xc-4D6" firstAttribute="top" secondItem="nfY-ab-fha" secondAttribute="bottom" constant="8" id="Spg-pC-Lpb"/>
                             <constraint firstItem="q5A-xD-w2H" firstAttribute="top" secondItem="GBj-4O-Whc" secondAttribute="top" id="T4M-3B-pdt"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="j8v-6q-UBb" secondAttribute="trailing" constant="10" id="Uqe-WA-iJ3"/>
                             <constraint firstItem="QGb-u7-KJb" firstAttribute="centerY" secondItem="RLh-bf-1c3" secondAttribute="centerY" id="YOu-hx-UBR"/>
                             <constraint firstItem="xcf-ic-uGo" firstAttribute="centerX" secondItem="GBj-4O-Whc" secondAttribute="centerX" id="ZCe-ld-yQW"/>
-                            <constraint firstItem="nfY-ab-fha" firstAttribute="leading" secondItem="E6c-py-dvH" secondAttribute="leading" constant="10" id="evV-uz-xFJ"/>
                             <constraint firstItem="j8v-6q-UBb" firstAttribute="top" secondItem="GBj-4O-Whc" secondAttribute="top" constant="20" id="gKG-Xv-sPT"/>
-                            <constraint firstItem="nRe-C7-8Ox" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="glj-Dt-xlI"/>
-                            <constraint firstItem="pXv-xc-4D6" firstAttribute="top" secondItem="uDg-u9-bOx" secondAttribute="bottom" id="h2k-iw-NqG"/>
-                            <constraint firstItem="Qs6-cE-d5q" firstAttribute="leading" secondItem="E6c-py-dvH" secondAttribute="leading" constant="10" id="hXD-m4-VKI"/>
+                            <constraint firstItem="Qs6-cE-d5q" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="gZx-JO-Rnc"/>
                             <constraint firstItem="9e0-zv-RiN" firstAttribute="leading" secondItem="E6c-py-dvH" secondAttribute="leading" constant="15" id="iIf-WZ-kZj"/>
-                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="y6W-wK-bDp" secondAttribute="bottom" constant="10" id="jh2-J8-hKJ"/>
+                            <constraint firstItem="nfY-ab-fha" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="j4u-4E-aT8"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="y6W-wK-bDp" secondAttribute="bottom" id="jh2-J8-hKJ"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="lHd-lf-g1u"/>
-                            <constraint firstItem="pXv-xc-4D6" firstAttribute="bottom" secondItem="GBj-4O-Whc" secondAttribute="bottom" id="pmF-Wb-9rS"/>
-                            <constraint firstItem="nRe-C7-8Ox" firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" id="ryc-W7-hqT"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="7U0-cU-I6g" secondAttribute="bottom" constant="68" id="pau-3e-Kls"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="xcf-ic-uGo" secondAttribute="bottom" constant="15" id="sOL-M5-nW8"/>
                             <constraint firstItem="q5A-xD-w2H" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="x2d-2k-Ovz"/>
                         </constraints>
@@ -221,18 +203,17 @@
                     <connections>
                         <outlet property="addObjectButton" destination="xcf-ic-uGo" id="uFa-W2-4Iu"/>
                         <outlet property="buoyancyButton" destination="nfY-ab-fha" id="kXF-uE-bUv"/>
-                        <outlet property="buoyancyTouch" destination="uDg-u9-bOx" id="9HY-SP-J27"/>
+                        <outlet property="buoyancyButtonHitArea" destination="7U0-cU-I6g" id="evp-i4-Vat"/>
                         <outlet property="debugMessageLabel" destination="Cxm-GD-h1F" id="0BW-FJ-xmR"/>
                         <outlet property="featurePointCountLabel" destination="2ZI-fK-iax" id="wpJ-fJ-Kn2"/>
                         <outlet property="findingText" destination="QGb-u7-KJb" id="NqE-1f-ZtI"/>
                         <outlet property="messageLabel" destination="Mqz-65-rAs" id="G3a-qn-5g9"/>
                         <outlet property="messagePanel" destination="9e0-zv-RiN" id="pKf-hp-Dvx"/>
                         <outlet property="promtButton" destination="y6W-wK-bDp" id="MEH-a5-GMb"/>
-                        <outlet property="promtTouch" destination="nRe-C7-8Ox" id="kAo-Ln-cVq"/>
                         <outlet property="sceneView" destination="E6c-py-dvH" id="I70-TL-39m"/>
                         <outlet property="settingsButton" destination="j8v-6q-UBb" id="wZV-ib-D05"/>
                         <outlet property="sweepButton" destination="Qs6-cE-d5q" id="r5g-ye-PYx"/>
-                        <outlet property="sweepTouch" destination="pXv-xc-4D6" id="GIB-LE-59I"/>
+                        <outlet property="sweepButtonHitArea" destination="GcV-88-5RX" id="EJo-OS-ZIL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -440,7 +421,7 @@
     <resources>
         <image name="add" width="100" height="100"/>
         <image name="buo" width="48" height="48"/>
-        <image name="pen" width="48" height="48"/>
+        <image name="face" width="48" height="48"/>
         <image name="settings" width="100" height="100"/>
         <image name="settingsPressed" width="100" height="100"/>
         <image name="sweep" width="48" height="48"/>

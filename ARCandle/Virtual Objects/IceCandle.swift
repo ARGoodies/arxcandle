@@ -4,7 +4,7 @@ import SceneKit
 class IceCandle: VirtualObject/*, ReactsToScale*/ {
 
 	override init() {
-		super.init(modelName: "ice_candle", fileExtension: "scn", thumbImageFilename: "ice-candle", title: "寒冰蜡烛")
+		super.init(modelName: "ice_candle", fileExtension: "scn", thumbImageFilename: "ice-candle", title: "冰蜡烛")
 	}
 
 	required init?(coder aDecoder: NSCoder) {

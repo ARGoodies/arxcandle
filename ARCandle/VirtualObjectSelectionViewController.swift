@@ -38,15 +38,15 @@ class VirtualObjectSelectionViewController: UIViewController, UITableViewDataSou
 	func getObject(index: Int) -> VirtualObject {
 		switch index {
 		case 0:
-			return ShortCandle()
+			return RedCandle()
 		case 1:
-            return RedCandle()
+            return ShortCandle()
 		case 2:
 			return IceCandle()
         case 3:
             return Flower()
 		default:
-			return ShortCandle()
+			return RedCandle()
 		}
 	}
 
