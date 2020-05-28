@@ -64,10 +64,10 @@ class SettingsViewController: UITableViewController {
     
     
     @IBAction func linkIntoMail(_ sender: UIButton) {
-        let alert = UIAlertController(title: "", message: "是否允许启动邮箱", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "", message: "是否允许浏览器打开链接", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
             Mixpanel.mainInstance().track(event: "mail")
-            UIApplication.shared.openURL(URL(string: "mailto:melo@argoodies.com?subject=Feedback")!)
+            UIApplication.shared.openURL(URL(string: "https://github.com/ARGoodies/arxcandle/issues")!)
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`cancel`, handler: { _ in
         }))
