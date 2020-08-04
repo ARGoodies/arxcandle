@@ -38,7 +38,6 @@ class SettingsViewController: UITableViewController {
     @IBOutlet var rateButton: UIButton!
     @IBOutlet weak var shareTimelineButton: UIButton!
     @IBOutlet var watchSupportButton: UIButton!
-    @IBOutlet weak var arGoodiesButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -55,7 +54,7 @@ class SettingsViewController: UITableViewController {
             
             Mixpanel.mainInstance().track(event: "privacy")
             
-            UIApplication.shared.openURL(URL(string: "https://argoodies.com/arxcandle-share/#privacy")!)
+            UIApplication.shared.openURL(URL(string: "https://argoodies.github.io/arxcandle-share/#privacy")!)
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`cancel`, handler: { _ in
         }))
@@ -92,7 +91,7 @@ class SettingsViewController: UITableViewController {
         
         Mixpanel.mainInstance().track(event: "share")
         
-        if let myWebsite = URL(string: "https://argoodies.com/arxcandle-share/") {//Enter link to your app here
+        if let myWebsite = URL(string: "https://argoodies.github.io/arxcandle-share/") {//Enter link to your app here
             let objectsToShare = [textToShare, myWebsite] as [Any]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             
@@ -115,19 +114,7 @@ class SettingsViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
         
     }
-    
-    @IBAction func ARGoodies(_ sender: Any) {
-        let alert = UIAlertController(title: "", message: "是否允许浏览器打开链接", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
-            
-            Mixpanel.mainInstance().track(event: "ar-goodies")
-            
-            UIApplication.shared.openURL(URL(string: "https://argoodies.com/")!)
-        }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: "cancel"), style: .`cancel`, handler: { _ in
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
+
 
 	private func populateSettings() {
 		let defaults = UserDefaults.standard
