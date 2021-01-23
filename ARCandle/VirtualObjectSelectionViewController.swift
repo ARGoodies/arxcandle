@@ -76,7 +76,12 @@ class VirtualObjectSelectionViewController: UIViewController, UITableViewDataSou
 
 		cell.backgroundColor = UIColor.clear
 		cell.selectionStyle = .none
-		let vibrancyEffect = UIVibrancyEffect(blurEffect: UIBlurEffect(style: .extraLight))
+        let vibrancyEffect: UIVibrancyEffect
+        if #available(iOS 13.0, *) {
+            vibrancyEffect = UIVibrancyEffect(blurEffect: UIBlurEffect(style: .systemMaterial))
+        } else {
+            vibrancyEffect = UIVibrancyEffect(blurEffect: UIBlurEffect(style: .extraLight))
+        }
 		let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
 		vibrancyView.frame = cell.contentView.frame
 		cell.contentView.insertSubview(vibrancyView, at: 0)
@@ -87,6 +92,9 @@ class VirtualObjectSelectionViewController: UIViewController, UITableViewDataSou
 		let object = getObject(index: indexPath.row)
         let thumbnailImage = object.thumbImage!
 		label.text = object.title
+        if #available(iOS 13.0, *) {
+            label.tintColor = UIColor.label
+        }
 		icon.image = thumbnailImage
 
 		return cell
@@ -97,10 +105,6 @@ class VirtualObjectSelectionViewController: UIViewController, UITableViewDataSou
 		cell?.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
 	}
 
-	func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-		let cell = tableView.cellForRow(at: indexPath)
-		cell?.backgroundColor = UIColor.clear
-	}
 }
 
 // MARK: - VirtualObjectSelectionViewControllerDelegate

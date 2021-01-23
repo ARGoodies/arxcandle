@@ -53,7 +53,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		setupFocusSquare()
 		updateSettings()
 		resetVirtualObject()
-        hideAdd()
+        hideAdd() // debug
         
         sceneView.scene.physicsWorld.contactDelegate = self as? SCNPhysicsContactDelegate
         sceneView.scene.physicsWorld.gravity = SCNVector3(x: 0.0, y: 0.0, z: 0.0)
@@ -599,7 +599,10 @@ extension MainViewController {
             configuration.planeDetection = ARWorldTrackingConfiguration.PlaneDetection.horizontal
             
             sceneView.session.run(configuration)
-        } else {
+        }
+        // DEBUG
+        // DEBUG
+        else {
             let sessionErrorMsg = "该设备不支持ARKit"
             Mixpanel.mainInstance().track(event: "no-arkit")
             displayErrorMessage(title: "", message: sessionErrorMsg, allowRestart: false)
