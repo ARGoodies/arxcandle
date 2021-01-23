@@ -91,7 +91,8 @@ class SettingsViewController: UITableViewController {
         
         Mixpanel.mainInstance().track(event: "share")
         
-        if let myWebsite = URL(string: "https://argoodies.github.io/arxcandle-share/") {//Enter link to your app here
+        if let myWebsite = URL(string: "https://apps.apple.com/cn/app/arxcandle/id1346647915") {
+            //Enter link to your app here
             let objectsToShare = [textToShare, myWebsite] as [Any]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             
@@ -102,17 +103,6 @@ class SettingsViewController: UITableViewController {
             activityVC.popoverPresentationController?.sourceView = sender
             self.present(activityVC, animated: true, completion: nil)
         }
-    }
-
-    @IBAction func watchSupportDevice(_ sender: Any) {
-    
-        Mixpanel.mainInstance().track(event: "support-device")
-        
-        let alert = UIAlertController(title: "", message: "可支持 ARKit 设备\n\niOS11 以上\n\nA9 以上处理器", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: "sure"), style: .`default`, handler: { _ in
-        }))
-        self.present(alert, animated: true, completion: nil)
-        
     }
 
 
