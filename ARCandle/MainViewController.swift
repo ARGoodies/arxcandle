@@ -2,6 +2,7 @@ import ARKit
 import Foundation
 import SceneKit
 import UIKit
+import SwiftUI
 import Photos
 import Mixpanel
 import AudioToolbox
@@ -457,25 +458,14 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var settingsButton: UIButton!
 
 	@IBAction func showSettings(_ button: UIButton) {
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		guard let settingsViewController = storyboard.instantiateViewController(
-			withIdentifier: "settingsViewController") as? SettingsViewController else {
-			return
-		}
+        let pageViewController = UIPageViewController(
+            transitionStyle: .scroll,
+            navigationOrientation: .horizontal)
+        
+        pageViewController.setViewControllers(
+            [UIHostingController(rootView: DashboardView())], direction: .forward, animated: true)
 
-		let barButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissSettings))
-		settingsViewController.navigationItem.rightBarButtonItem = barButtonItem
-		settingsViewController.title = ""
-
-
-		let navigationController = UINavigationController(rootViewController: settingsViewController)
-		navigationController.modalPresentationStyle = .pageSheet
-		navigationController.popoverPresentationController?.delegate = self
-
-		self.present(navigationController, animated: true, completion: nil)
-
-		navigationController.popoverPresentationController?.sourceView = settingsButton
-		navigationController.popoverPresentationController?.sourceRect = settingsButton.bounds
+		self.present(pageViewController, animated: true, completion: nil)
 	}
 
     func getUserVector() -> (SCNVector3, SCNVector3) { // (direction, position)
@@ -941,10 +931,17 @@ extension MainViewController {
         if (findingText.isHidden == false) {
             findingText.text = "请左右移动您的手机"
         }
-//        // 去掉定时反而很好
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-//            self.showAdd()
-//        })
+        // 去掉定时反而很好？
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+            if (self.findingText.isHidden == false) {
+                self.findingText.text = "请寻找光滑的平面"
+            }
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
+            if (self.findingText.isHidden == false) {
+                self.findingText.text = "请左右移动您的手机"
+            }
+        })
     }
 
     func hideAdd() {
